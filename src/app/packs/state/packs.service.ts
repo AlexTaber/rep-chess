@@ -6,7 +6,8 @@ import { PacksStore } from './packs.store';
 @Injectable({ providedIn: 'root' })
 export class PacksService {
 
-  constructor(private packsStore: PacksStore) {}
+  constructor(
+    private packsStore: PacksStore) {}
 
   public fetch(): void {
     this.packsStore.set(MOCK_PACKS);

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExerciseCardComponent } from './exercise-card.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -9,7 +10,8 @@ import { ExerciseCardComponent } from './exercise-card.component';
     ExerciseCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
   ],
   exports: [
     ExerciseCardComponent

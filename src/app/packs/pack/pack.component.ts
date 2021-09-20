@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { PacksQuery, PacksService } from '../state';
+import { ExercisesQuery, ExercisesService } from 'src/app/exercises/state';
+import { Pack, PacksQuery, PacksService } from '../state';
 
 @Component({
   selector: 'app-pack',
@@ -9,11 +10,14 @@ import { PacksQuery, PacksService } from '../state';
 })
 export class PackComponent implements OnInit {
   public pack$ = this.packsQuery.activePack$;
+  public exercises$ = this.exercisesQuery.exercises$;
 
   constructor(
     private route: ActivatedRoute,
     private packsService: PacksService,
     private packsQuery: PacksQuery,
+    private exercisesService: ExercisesService,
+    private exercisesQuery: ExercisesQuery,
   ) { }
 
   ngOnInit(): void {
@@ -22,5 +26,6 @@ export class PackComponent implements OnInit {
 
   private updateActivePack(params: Params): void {
     this.packsService.setActive(params.id);
+    this.exercisesService.set((this.packsQuery.getActive() as Pack)?.exercises);
   }
 }
