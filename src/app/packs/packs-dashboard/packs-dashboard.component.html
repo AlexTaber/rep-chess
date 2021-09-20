@@ -1,0 +1,7 @@
+<app-container>
+  <app-grid>
+    <app-grid-item *ngFor="let pack of packs$ | async">
+      <app-pack-card [pack]="pack"></app-pack-card>
+    </app-grid-item>
+  </app-grid>
+</app-container>
