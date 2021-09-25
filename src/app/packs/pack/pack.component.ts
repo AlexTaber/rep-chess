@@ -25,7 +25,7 @@ export class PackComponent implements OnInit {
   }
 
   private updateActivePack(params: Params): void {
-    this.packsService.setActive(params.id);
+    this.packsService.setActive(params.packId);
     this.exercisesService.set((this.packsQuery.getActive() as Pack)?.exercises);
   }
 }

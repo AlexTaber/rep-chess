@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card [routerLink]="['/packs', (pack$ | async)?.id, 'exercises', exercise.id]">
   <mat-card-header>
     Exercise
   </mat-card-header>

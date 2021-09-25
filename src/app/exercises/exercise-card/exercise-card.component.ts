@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PacksQuery } from 'src/app/packs/state';
 import { Exercise } from '../state/exercise.model';
 
 @Component({
@@ -7,9 +8,13 @@ import { Exercise } from '../state/exercise.model';
   styleUrls: ['./exercise-card.component.scss']
 })
 export class ExerciseCardComponent implements OnInit {
+  public pack$ = this.packsQuery.activePack$;
+
   @Input() exercise: Exercise = {} as Exercise;
 
-  constructor() { }
+  constructor(
+    private packsQuery: PacksQuery
+  ) { }
 
   ngOnInit(): void {
   }

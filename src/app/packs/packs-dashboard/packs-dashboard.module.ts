@@ -6,6 +6,7 @@ import { GridModule } from 'src/app/ui/grid/grid.module';
 import { PackCardModule } from '../pack-card/pack-card.module';
 import { PacksDashboardRoutingModule } from './packs-dashboard-routing.module';
 import { PackModule } from '../pack/pack.module';
+import { ExerciseModule } from 'src/app/exercises/exercise/exercise.module';
 
 
 
@@ -20,6 +21,7 @@ import { PackModule } from '../pack/pack.module';
     GridModule,
     PackCardModule,
     PackModule,
+    ExerciseModule,
   ],
   exports: [
     PacksDashboardComponent

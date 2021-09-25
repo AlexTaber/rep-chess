@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PackComponent } from './pack.component';
 import { ContainerModule } from 'src/app/ui/container/container.module';
 import { ExerciseCardModule } from 'src/app/exercises/exercise-card/exercise-card.module';
+import { GridModule } from 'src/app/ui/grid/grid.module';
 
 
 
@@ -14,6 +15,7 @@ import { ExerciseCardModule } from 'src/app/exercises/exercise-card/exercise-car
     CommonModule,
     ContainerModule,
     ExerciseCardModule,
+    GridModule,
   ],
   exports: [
     PackComponent

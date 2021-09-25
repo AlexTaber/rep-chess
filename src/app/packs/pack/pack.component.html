@@ -1,3 +1,7 @@
 <app-container>
-  <app-exercise-card *ngFor="let exercise of exercises$ | async" [exercise]="exercise"></app-exercise-card>
+  <app-grid>
+    <app-grid-item *ngFor="let exercise of exercises$ | async">
+      <app-exercise-card [exercise]="exercise"></app-exercise-card>
+    </app-grid-item>
+  </app-grid>
 </app-container>

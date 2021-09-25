@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ID } from '@datorama/akita';
 import { Exercise } from '.';
 import { ExercisesStore } from './exercises.store';
 
@@ -9,5 +10,9 @@ export class ExercisesService {
 
   public set(exercises: Exercise[]): void {
     this.exercisesStore.set(exercises);
+  }
+
+  public setActive(id: ID): void {
+    this.exercisesStore.setActive(id);
   }
 }
