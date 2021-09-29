@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { Session } from './session.model';
+import { TrainingSession } from './training-session.model';
 
-export interface SessionsState extends EntityState<Session> {}
+export interface TrainingSessionsState extends EntityState<TrainingSession> {}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
   name: 'sessions'
 })
-export class SessionsStore extends EntityStore<SessionsState> {
+export class TrainingSessionsStore extends EntityStore<TrainingSessionsState> {
 
   constructor() {
     super();

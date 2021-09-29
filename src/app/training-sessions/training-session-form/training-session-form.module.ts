@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { SessionFormComponent } from './session-form.component';
+import { TrainingSessionFormComponent } from './training-session-form.component';
 import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
   declarations: [
-    SessionFormComponent
+    TrainingSessionFormComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
   ],
   exports: [
-    SessionFormComponent
+    TrainingSessionFormComponent
   ]
 })
-export class SessionFormModule { }
+export class TrainingSessionFormModule { }

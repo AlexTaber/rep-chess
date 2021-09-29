@@ -7,7 +7,7 @@ import { PackCardModule } from '../pack-card/pack-card.module';
 import { PacksDashboardRoutingModule } from './packs-dashboard-routing.module';
 import { PackModule } from '../pack/pack.module';
 import { ExerciseModule } from 'src/app/exercises/exercise/exercise.module';
-import { CreateSessionModule } from 'src/app/sessions/create-session/create-session.module';
+import { CreateTrainingSessionModule } from 'src/app/training-sessions/create-training-session/create-training-session.module';
 
 
 
@@ -23,7 +23,7 @@ import { CreateSessionModule } from 'src/app/sessions/create-session/create-sess
     PackCardModule,
     PackModule,
     ExerciseModule,
-    CreateSessionModule,
+    CreateTrainingSessionModule,
   ],
   exports: [
     PacksDashboardComponent

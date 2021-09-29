@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 
-export interface SessionFormState {
-  payload: SessionFormPayload;
+export interface TrainingSessionFormState {
+  payload: TrainingSessionFormPayload;
 }
 
-export interface SessionFormPayload {
+export interface TrainingSessionFormPayload {
   unlimitedMode: boolean;
   minutes: number;
   seconds: number;
 }
 
-export function createInitialState(): SessionFormState {
+export function createInitialState(): TrainingSessionFormState {
   return {
     payload: {
       unlimitedMode: false,
@@ -23,7 +23,7 @@ export function createInitialState(): SessionFormState {
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'sessions-form' })
-export class SessionFormStore extends Store<SessionFormState> {
+export class TrainingSessionFormStore extends Store<TrainingSessionFormState> {
 
   constructor() {
     super(createInitialState());

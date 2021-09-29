@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateSessionComponent } from 'src/app/sessions/create-session/create-session.component';
+import { CreateTrainingSessionComponent } from 'src/app/training-sessions/create-training-session/create-training-session.component';
 import { ExerciseComponent } from 'src/app/exercises/exercise/exercise.component';
 import { PackComponent } from '../pack/pack.component';
 import { PacksDashboardComponent } from './packs-dashboard.component';
@@ -23,12 +23,12 @@ const routes: Routes = [
 
   {
     path: ":packId/sessions/new",
-    component: CreateSessionComponent,
+    component: CreateTrainingSessionComponent,
   },
 
   {
     path: ":packId/train",
-    component: CreateSessionComponent,
+    component: CreateTrainingSessionComponent,
   }
 ];
 
