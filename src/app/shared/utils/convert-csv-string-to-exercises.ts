@@ -1,5 +1,5 @@
 import { guid } from "@datorama/akita";
-import { LichessExercise } from "src/app/exercises/state";
+import { ExerciseTheme, LichessExercise } from "src/app/exercises/state";
 
 declare var require: any
 
@@ -20,7 +20,7 @@ const convertRowToExercise = (row: string[]): LichessExercise => {
       rating: parseInt(row[3]),
       ratingDeviation: parseInt(row[4]),
       popularity: parseInt(row[5]),
-      themes: row[7].split(" "),
+      themes: row[7].split(" ") as ExerciseTheme[],
       gameUrl: row[8],
     }
   }

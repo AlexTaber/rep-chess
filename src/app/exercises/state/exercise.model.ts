@@ -18,8 +18,20 @@ export interface LichessExerciseData extends ExerciseData {
   rating: number;
   ratingDeviation: number;
   popularity: number;
-  themes: string[];
+  themes: ExerciseTheme[];
   gameUrl: string;
 }
+
+export interface ExerciseFilter {
+  themes?: ExerciseTheme[];
+  ratingRange?: ExerciseRatingRange;
+}
+
+export interface ExerciseRatingRange {
+  low: number;
+  high: number;
+}
+
+export type ExerciseTheme = "pin";
 
 export const MOCK_EXERCISES: LichessExercise[] = convertCsvStringToExercises(MOCK_CSVS[0]);

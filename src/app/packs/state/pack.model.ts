@@ -1,5 +1,6 @@
 import { ID } from "@datorama/akita";
 import { Exercise, MOCK_EXERCISES } from "src/app/exercises/state/exercise.model";
+import { MockedExercisesRepository } from "src/app/shared/utils/mocked-exercises.repository";
 
 export interface Pack {
   id: ID;
@@ -7,16 +8,25 @@ export interface Pack {
   exercises: Exercise[];
 }
 
+const repo = new MockedExercisesRepository();
+
 export const MOCK_PACKS: Pack[] = [
   {
     id: "adklfjaldsf",
-    name: "Test Pack",
-    exercises: MOCK_EXERCISES,
+    name: "Easy Peasy",
+    exercises: repo.getMany({
+      ratingRange: {
+        low: 800,
+        high: 1000,
+      },
+    }),
   },
 
   {
     id: "asdgdgasads",
-    name: "Test Pack 2",
-    exercises: MOCK_EXERCISES,
+    name: "Pins Galore!",
+    exercises: repo.getMany({
+      themes: ["pin"],
+    }),
   }
 ]
