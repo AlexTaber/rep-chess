@@ -1,0 +1,3 @@
+<app-container *ngIf="session$ | async as session">
+  <p>{{ session.results?.successes }} - {{ session.results?.failures }}</p>
+</app-container>

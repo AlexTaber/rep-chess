@@ -2,6 +2,7 @@ import { ID } from '@datorama/akita';
 
 export interface TrainingSessionExercise {
   id: ID;
+  trainingSessionId: ID;
   exerciseId: ID;
 }
 

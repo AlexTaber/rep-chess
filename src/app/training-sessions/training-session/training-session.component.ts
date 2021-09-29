@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
 import { Exercise, ExercisesQuery } from 'src/app/exercises/state';
 import { Pack, PacksQuery } from 'src/app/packs/state';
@@ -30,6 +31,7 @@ export class TrainingSessionComponent implements OnInit {
     private sessionFormQuery: TrainingSessionFormQuery,
     private packsQuery: PacksQuery,
     private exercisesQuery: ExercisesQuery,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,11 @@ export class TrainingSessionComponent implements OnInit {
 
   public onExerciseComplete(): void {
     this.createSessionExerciseFromExercise(this.nextExercise);
+  }
+
+  public onSessionComplete(): void {
+    this.setResults();
+    this.navigateToResults();
   }
 
   private createSession(): void {
@@ -72,7 +79,16 @@ export class TrainingSessionComponent implements OnInit {
 
   private createSessionExerciseFromExercise(exercise: Exercise | undefined): void {
     this.sessionExercisesService.create({
+      trainingSessionId: this.sessionsQuery.getActiveId(),
       exerciseId: exercise?.id,
     }).subscribe(exercise => this.sessionExercisesService.setActive(exercise.id));
+  }
+
+  private setResults(): void {
+    this.sessionsService.setResults(this.sessionsQuery.getResults())
+  }
+
+  private navigateToResults(): void {
+    this.router.navigate([this.sessionsQuery.getActiveId(), "results"]);
   }
 }

@@ -9,6 +9,7 @@ import { PackModule } from '../pack/pack.module';
 import { ExerciseModule } from 'src/app/exercises/exercise/exercise.module';
 import { CreateTrainingSessionModule } from 'src/app/training-sessions/create-training-session/create-training-session.module';
 import { TrainingSessionModule } from 'src/app/training-sessions/training-session/training-session.module';
+import { TrainingSessionResultsModule } from 'src/app/training-sessions/training-session-results/training-session-results.module';
 
 
 
@@ -26,6 +27,7 @@ import { TrainingSessionModule } from 'src/app/training-sessions/training-sessio
     ExerciseModule,
     CreateTrainingSessionModule,
     TrainingSessionModule,
+    TrainingSessionResultsModule,
   ],
   exports: [
     PacksDashboardComponent

@@ -9,8 +9,16 @@ export interface TrainingSession {
   time: TimeInSeconds;
   exercises: TrainingSessionExercise[];
   config: TrainingSessionConfig;
+  startTime: Date;
+  results?: TrainingSessionResults;
 }
 
 export interface TrainingSessionConfig {
   targetTime?: TimeInSeconds;
+}
+
+export interface TrainingSessionResults {
+  successes: number;
+  failures: number;
+  time: TimeInSeconds;
 }

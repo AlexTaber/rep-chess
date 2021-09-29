@@ -5,6 +5,7 @@ import { ExerciseComponent } from 'src/app/exercises/exercise/exercise.component
 import { PackComponent } from '../pack/pack.component';
 import { PacksDashboardComponent } from './packs-dashboard.component';
 import { TrainingSessionComponent } from 'src/app/training-sessions/training-session/training-session.component';
+import { TrainingSessionResultsComponent } from 'src/app/training-sessions/training-session-results/training-session-results.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
         component: TrainingSessionComponent,
       }
     ]
+  },
+
+  {
+    path: ":sessionId/results",
+    component: TrainingSessionResultsComponent,
   },
 ];
 

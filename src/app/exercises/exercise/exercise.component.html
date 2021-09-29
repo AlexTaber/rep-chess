@@ -1,9 +1,7 @@
-<app-container>
-  <ngx-chess-board
-    #ngxBoard
-    [pieceIcons]="pieceIcons"
-    (moveChange)="onMove($any($event))"
-  ></ngx-chess-board>
+<ngx-chess-board
+  #ngxBoard
+  [pieceIcons]="pieceIcons"
+  (moveChange)="onMove($any($event))"
+></ngx-chess-board>
 
-  <button mat-raised-button (click)="onShowSolution()">Show Solution</button>
-</app-container>
+<button mat-raised-button (click)="onShowSolution()">Show Solution</button>
