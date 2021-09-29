@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
+import { MoveChange } from 'ngx-chess-board';
 
 export interface ExerciseState {
   moveIndex: number;
@@ -8,6 +9,10 @@ export interface ExerciseState {
 
 export interface ExerciseFailEvent {
   shouldSkip: boolean;
+}
+
+export interface MoveChangeEvent extends MoveChange {
+  move: string;
 }
 
 export function createInitialState(): ExerciseState {

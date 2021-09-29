@@ -1,14 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { MoveChange, NgxChessBoardComponent } from 'ngx-chess-board';
+import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { Subscription } from 'rxjs';
+import { convertNgxMoveToMove } from 'src/app/shared/utils/convert-ngx-move-to-move';
 import { Exercise, ExercisesQuery } from '../state';
 import { pieceIcons } from './piece-icons';
 import { ExerciseQuery, ExerciseService } from './state';
-import { ExerciseFailEvent } from './state/exercise.store';
-
-interface MoveChangeEvent extends MoveChange {
-  move: string;
-}
+import { ExerciseFailEvent, MoveChangeEvent } from './state/exercise.store';
 
 @Component({
   selector: 'app-exercise',
@@ -52,6 +49,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   }
 
   public onMove(event: MoveChangeEvent): void {
+    event.move = convertNgxMoveToMove(event);
     this.isUserTurn ? this.checkMove(event.move) : this.exerciseService.incrementMoveIndex();
   }
 
