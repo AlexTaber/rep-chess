@@ -1,5 +1,11 @@
-<mat-card [routerLink]="['/packs', pack.id]">
+<mat-card>
   <mat-card-header>
-    {{ pack.name }}
+    <h4>{{ pack.name }}</h4>
   </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-actions>
+    <button mat-button [routerLink]="['/packs', pack.id, 'sessions', 'new']">Train</button>
+  </mat-card-actions>
 </mat-card>

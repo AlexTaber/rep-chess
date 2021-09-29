@@ -1,0 +1,15 @@
+<form *ngIf="(payload$ | async) as payload" (submit)="onSubmit(payload)">
+  <mat-form-field>
+    <mat-label>Minutes</mat-label>
+
+    <input matInput type="number" [value]="payload.minutes" (change)="updateMinutes($event)">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Seconds</mat-label>
+
+    <input matInput type="number" [value]="payload.seconds" (change)="updateSeconds($event)">
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" type="submit">Start Session</button>
+</form>
