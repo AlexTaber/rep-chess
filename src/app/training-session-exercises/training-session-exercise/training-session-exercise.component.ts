@@ -40,11 +40,7 @@ export class TrainingSessionExerciseComponent implements OnInit, OnDestroy {
 
   public onFailExercise(event: ExerciseFailEvent): void {
     this.trainingSessionExerciseAttemptsService.updateActiveStatus("fail");
-    this.createAttempt();
-
-    if (event.shouldSkip) {
-      this.complete.emit();
-    }
+    event.shouldSkip ? this.complete.emit() : this.createAttempt();
   }
 
   private setTrainingExerciseSub(): void {
