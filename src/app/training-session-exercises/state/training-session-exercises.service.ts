@@ -12,7 +12,6 @@ export class TrainingSessionExercisesService {
   public create(payload: Partial<TrainingSessionExercise>): Observable<TrainingSessionExercise> {
     const exercise = {
       id: guid(),
-      attemptIds: [],
       ...payload,
     } as TrainingSessionExercise;
     this.sessionExercisesStore.add(exercise);
