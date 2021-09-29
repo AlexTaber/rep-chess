@@ -3,11 +3,17 @@ import { Store, StoreConfig } from '@datorama/akita';
 
 export interface ExerciseState {
   moveIndex: number;
+  showingSolution: boolean;
+}
+
+export interface ExerciseFailEvent {
+  shouldSkip: boolean;
 }
 
 export function createInitialState(): ExerciseState {
   return {
     moveIndex: 0,
+    showingSolution: false,
   };
 }
 

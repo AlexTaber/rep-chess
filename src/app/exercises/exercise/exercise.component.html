@@ -4,4 +4,6 @@
     [pieceIcons]="pieceIcons"
     (moveChange)="onMove($any($event))"
   ></ngx-chess-board>
+
+  <button mat-raised-button (click)="onShowSolution()">Show Solution</button>
 </app-container>

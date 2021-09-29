@@ -11,7 +11,11 @@ export class ExerciseService {
     this.exerciseStore.update({ moveIndex: currentMoveIndex + 1 });
   }
 
-  public resetMoveIndex(): void {
-    this.exerciseStore.update({ moveIndex: 0 });
+  public setShowingSolution(showingSolution: boolean): void {
+    this.exerciseStore.update({ showingSolution });
+  }
+
+  public reset(): void {
+    this.exerciseStore.reset();
   }
 }

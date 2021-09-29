@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ExerciseComponent } from './exercise.component';
 import { ContainerModule } from 'src/app/ui/container/container.module';
 import { NgxChessBoardModule } from 'ngx-chess-board';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -12,6 +13,7 @@ import { NgxChessBoardModule } from 'ngx-chess-board';
   ],
   imports: [
     CommonModule,
+    MatButtonModule,
     ContainerModule,
     NgxChessBoardModule,
   ],

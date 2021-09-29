@@ -11,10 +11,7 @@ export class PacksDashboardComponent implements OnInit {
 
   constructor(
     private packsQuery: PacksQuery,
-    private packsService: PacksService
   ) { }
 
-  ngOnInit(): void {
-    this.packsService.fetch();
-  }
+  ngOnInit(): void {}
 }

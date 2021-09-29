@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ExerciseFailEvent } from 'src/app/exercises/exercise/state/exercise.store';
 import { ExercisesService } from 'src/app/exercises/state';
 import { TrainingSessionExerciseAttemptsService } from 'src/app/training-session-exercise-attempts/state';
 import { TrainingSessionExercisesQuery } from '../state';
@@ -37,9 +38,13 @@ export class TrainingSessionExerciseComponent implements OnInit, OnDestroy {
     this.complete.emit();
   }
 
-  public onFailExercise(): void {
+  public onFailExercise(event: ExerciseFailEvent): void {
     this.trainingSessionExerciseAttemptsService.updateActiveStatus("fail");
     this.createAttempt();
+
+    if (event.shouldSkip) {
+      this.complete.emit();
+    }
   }
 
   private setTrainingExerciseSub(): void {
