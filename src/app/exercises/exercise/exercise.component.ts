@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { MoveChange, NgxChessBoardView } from 'ngx-chess-board';
+import { MoveChange, NgxChessBoardComponent } from 'ngx-chess-board';
 import { Subscription } from 'rxjs';
 import { Exercise, ExercisesQuery } from '../state';
 import { ExerciseQuery, ExerciseService } from './state';
@@ -21,7 +21,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   public exercise$ = this.exercisesQuery.activeExercise$;
 
   private exerciseSub: Subscription | undefined;
-  private board?: NgxChessBoardView;
+  private board?: NgxChessBoardComponent;
 
   private get exercise(): Exercise | undefined {
     return this.exercisesQuery.getActive() as Exercise | undefined;
@@ -31,7 +31,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     return this.exerciseQuery.getValue().moveIndex % 2 === 1;
   }
 
-  @ViewChild('ngxBoard', {static: false}) set ngxBoard(board: NgxChessBoardView | undefined) {
+  @ViewChild('ngxBoard', {static: false}) set ngxBoard(board: NgxChessBoardComponent | undefined) {
     this.onSetBoard(board);
   };
 
@@ -51,7 +51,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     this.isUserTurn ? this.checkMove(event.move) : this.exerciseService.incrementMoveIndex();
   }
 
-  private onSetBoard(board: NgxChessBoardView | undefined): void {
+  private onSetBoard(board: NgxChessBoardComponent | undefined): void {
     if (board) {
       this.board = board;
       this.setExerciseSub();
@@ -65,12 +65,19 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   private initializeExercise(): void {
     this.exerciseService.resetMoveIndex();
     this.setFen();
+    this.checkFlipBoard();
     this.scheduleNextMoveOrPass();
     this.init.emit(this.exercise);
   }
 
   private setFen(): void {
     this.board?.setFEN(this.exercise?.data.fen || "")
+  }
+
+  private checkFlipBoard(): void {
+    if (this.board?.engineFacade.board.currentWhitePlayer) {
+      this.board.reverse();
+    }
   }
 
   private scheduleNextMoveOrPass(): void {

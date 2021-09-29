@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NgxChessBoardView } from 'ngx-chess-board';
 import { ExerciseStore } from './exercise.store';
 
 @Injectable({ providedIn: 'root' })
