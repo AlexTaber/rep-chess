@@ -11,4 +11,8 @@ export class TrainingSessionExercisesQuery extends QueryEntity<TrainingSessionEx
   constructor(protected store: TrainingSessionExercisesStore) {
     super(store);
   }
+
+  public getActiveTrainingSessionExercise(): TrainingSessionExercise | undefined {
+    return this.getActive() as TrainingSessionExercise | undefined;
+  }
 }

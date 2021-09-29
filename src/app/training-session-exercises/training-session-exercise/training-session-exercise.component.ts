@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ExercisesService } from 'src/app/exercises/state';
+import { TrainingSessionExerciseAttemptsService } from 'src/app/training-session-exercise-attempts/state';
 import { TrainingSessionExercisesQuery } from '../state';
 
 @Component({
@@ -15,6 +16,7 @@ export class TrainingSessionExerciseComponent implements OnInit, OnDestroy {
 
   constructor(
     private trainingSessionExercisesQuery: TrainingSessionExercisesQuery,
+    private trainingSessionExerciseAttemptsService: TrainingSessionExerciseAttemptsService,
     private exercisesService: ExercisesService,
   ) { }
 
@@ -26,12 +28,27 @@ export class TrainingSessionExerciseComponent implements OnInit, OnDestroy {
     this.trainingExerciseSub?.unsubscribe();
   }
 
-  public onCompleteExercise(): void {
+  public onInitExercise(): void {
+    this.createAttempt();
+  }
+
+  public onPassExercise(): void {
+    this.trainingSessionExerciseAttemptsService.updateActiveStatus("pass");
     this.complete.emit();
+  }
+
+  public onFailExercise(): void {
+    this.trainingSessionExerciseAttemptsService.updateActiveStatus("fail");
+    this.createAttempt();
   }
 
   private setTrainingExerciseSub(): void {
     this.trainingExerciseSub = this.trainingSessionExercisesQuery.active$
       .subscribe(active => this.exercisesService.setActive(active.exerciseId));
+  }
+
+  private createAttempt(): void {
+    const activeId = this.trainingSessionExercisesQuery.getActiveId();
+    this.trainingSessionExerciseAttemptsService.createAndSetActive(activeId)
   }
 }

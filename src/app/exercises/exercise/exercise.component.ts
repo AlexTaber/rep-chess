@@ -14,15 +14,14 @@ interface MoveChangeEvent extends MoveChange {
   styleUrls: ['./exercise.component.scss']
 })
 export class ExerciseComponent implements OnInit, OnDestroy {
-  @Output() complete = new EventEmitter<void>();
+  @Output() init = new EventEmitter<Exercise>();
+  @Output() pass = new EventEmitter<void>();
+  @Output() fail = new EventEmitter<void>();
 
   public exercise$ = this.exercisesQuery.activeExercise$;
 
   private exerciseSub: Subscription | undefined;
-
-  private get board(): NgxChessBoardView | undefined {
-    return this.exerciseQuery.getValue().board;
-  }
+  private board?: NgxChessBoardView;
 
   private get exercise(): Exercise | undefined {
     return this.exercisesQuery.getActive() as Exercise | undefined;
@@ -54,7 +53,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   private onSetBoard(board: NgxChessBoardView | undefined): void {
     if (board) {
-      this.exerciseService.setBoard(board);
+      this.board = board;
       this.setExerciseSub();
     }
   }
@@ -66,16 +65,17 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   private initializeExercise(): void {
     this.exerciseService.resetMoveIndex();
     this.setFen();
-    this.scheduleNextMoveOrEmitComplete();
+    this.scheduleNextMoveOrPass();
+    this.init.emit(this.exercise);
   }
 
   private setFen(): void {
     this.board?.setFEN(this.exercise?.data.fen || "")
   }
 
-  private scheduleNextMoveOrEmitComplete(): void {
+  private scheduleNextMoveOrPass(): void {
     const nextMove = this.exercise?.data.moves[this.exerciseQuery.getValue().moveIndex];
-    !!nextMove ? this.scheduleMove(nextMove) : this.emitComplete();
+    !!nextMove ? this.scheduleMove(nextMove) : this.onPass();
   }
 
   private scheduleMove(move: string): void {
@@ -86,19 +86,24 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   private checkMove(move: string): void {
     const nextMove = this.exercise?.data.moves[this.exerciseQuery.getValue().moveIndex];
-    move === nextMove ? this.onSuccessfulMove() : this.undo();
+    move === nextMove ? this.onSuccessfulMove() : this.onFailedMove();
   }
 
   private onSuccessfulMove(): void {
     this.exerciseService.incrementMoveIndex();
-    this.scheduleNextMoveOrEmitComplete();
+    this.scheduleNextMoveOrPass();
   }
 
-  private undo(): void {
+  private onFailedMove(): void {
     this.board?.undo();
+    this.emitFail();
   }
 
-  private emitComplete(): void {
-    this.complete.emit();
+  private onPass(): void {
+    this.pass.emit();
+  }
+
+  private emitFail(): void {
+    this.fail.emit();
   }
 }

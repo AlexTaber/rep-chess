@@ -7,10 +7,6 @@ export class ExerciseService {
 
   constructor(private exerciseStore: ExerciseStore) {}
 
-  public setBoard(board: NgxChessBoardView): void {
-    this.exerciseStore.update({ board });
-  }
-
   public incrementMoveIndex(): void {
     const currentMoveIndex = this.exerciseStore.getValue().moveIndex;
     this.exerciseStore.update({ moveIndex: currentMoveIndex + 1 });
