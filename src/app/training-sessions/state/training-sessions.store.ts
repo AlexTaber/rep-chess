@@ -6,7 +6,7 @@ export interface TrainingSessionsState extends EntityState<TrainingSession> {}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
-  name: 'sessions'
+  name: 'training-sessions'
 })
 export class TrainingSessionsStore extends EntityStore<TrainingSessionsState> {
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { guid } from '@datorama/akita';
+import { guid, ID } from '@datorama/akita';
 import { Observable, of } from 'rxjs';
 import { TrainingSession } from '.';
 import { TrainingSessionsStore } from './training-sessions.store';
@@ -13,5 +13,9 @@ export class TrainingSessionsService {
     const session = { id: guid(), ...payload } as TrainingSession;
     this.sessionsStore.add(session);
     return of(session);
+  }
+
+  public setActive(id: ID): void {
+    this.sessionsStore.setActive(id);
   }
 }

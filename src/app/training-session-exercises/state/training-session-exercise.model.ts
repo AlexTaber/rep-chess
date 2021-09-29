@@ -2,6 +2,7 @@ import { ID } from '@datorama/akita';
 
 export interface TrainingSessionExercise {
   id: ID;
+  exerciseId: ID;
 }
 
 export function createTrainingSessionExercise(params: Partial<TrainingSessionExercise>) {

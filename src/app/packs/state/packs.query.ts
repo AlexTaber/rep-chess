@@ -12,4 +12,8 @@ export class PacksQuery extends QueryEntity<PacksState> {
   constructor(protected store: PacksStore) {
     super(store);
   }
+
+  public getActivePack(): Pack | undefined {
+    return this.getActive() as Pack | undefined;
+  }
 }

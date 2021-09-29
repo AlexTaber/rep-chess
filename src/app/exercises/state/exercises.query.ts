@@ -13,4 +13,14 @@ export class ExercisesQuery extends QueryEntity<ExercisesState> {
     super(store);
   }
 
+  public getNext(): Exercise | undefined {
+    const currentActiveId = this.getActiveId();
+    const all = this.getAll();
+    const currentIndex = all.findIndex(exercise => exercise.id === currentActiveId);
+    return all[currentIndex + 1];
+  }
+
+  public getFirst(): Exercise | undefined {
+    return this.getAll()[0];
+  }
 }

@@ -4,6 +4,7 @@ import { CreateTrainingSessionComponent } from 'src/app/training-sessions/create
 import { ExerciseComponent } from 'src/app/exercises/exercise/exercise.component';
 import { PackComponent } from '../pack/pack.component';
 import { PacksDashboardComponent } from './packs-dashboard.component';
+import { TrainingSessionComponent } from 'src/app/training-sessions/training-session/training-session.component';
 
 const routes: Routes = [
   {
@@ -14,22 +15,23 @@ const routes: Routes = [
   {
     path: ":packId",
     component: PackComponent,
-  },
+    children: [
+      {
+        path: "exercises/:exerciseId",
+        component: ExerciseComponent,
+      },
 
-  {
-    path: ":packId/exercises/:exerciseId",
-    component: ExerciseComponent,
-  },
+      {
+        path: "sessions/new",
+        component: CreateTrainingSessionComponent,
+      },
 
-  {
-    path: ":packId/sessions/new",
-    component: CreateTrainingSessionComponent,
+      {
+        path: "train",
+        component: TrainingSessionComponent,
+      }
+    ]
   },
-
-  {
-    path: ":packId/train",
-    component: CreateTrainingSessionComponent,
-  }
 ];
 
 @NgModule({

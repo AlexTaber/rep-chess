@@ -1,5 +1,6 @@
 <app-container>
   <ngx-chess-board
-    #board
+    #ngxBoard
+    (moveChange)="onMove($any($event))"
   ></ngx-chess-board>
 </app-container>

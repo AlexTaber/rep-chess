@@ -4,6 +4,7 @@ import { PackComponent } from './pack.component';
 import { ContainerModule } from 'src/app/ui/container/container.module';
 import { ExerciseCardModule } from 'src/app/exercises/exercise-card/exercise-card.module';
 import { GridModule } from 'src/app/ui/grid/grid.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,6 +17,7 @@ import { GridModule } from 'src/app/ui/grid/grid.module';
     ContainerModule,
     ExerciseCardModule,
     GridModule,
+    RouterModule,
   ],
   exports: [
     PackComponent
