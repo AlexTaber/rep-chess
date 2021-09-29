@@ -1,6 +1,7 @@
 <app-container>
   <ngx-chess-board
     #ngxBoard
+    [pieceIcons]="pieceIcons"
     (moveChange)="onMove($any($event))"
   ></ngx-chess-board>
 </app-container>

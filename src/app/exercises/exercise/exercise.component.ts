@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@
 import { MoveChange, NgxChessBoardComponent } from 'ngx-chess-board';
 import { Subscription } from 'rxjs';
 import { Exercise, ExercisesQuery } from '../state';
+import { pieceIcons } from './piece-icons';
 import { ExerciseQuery, ExerciseService } from './state';
 
 interface MoveChangeEvent extends MoveChange {
@@ -19,6 +20,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   @Output() fail = new EventEmitter<void>();
 
   public exercise$ = this.exercisesQuery.activeExercise$;
+  public pieceIcons = pieceIcons;
 
   private exerciseSub: Subscription | undefined;
   private board?: NgxChessBoardComponent;
