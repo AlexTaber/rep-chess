@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TrainingSessionsQuery } from 'src/app/training-sessions/state';
 
 @Component({
   selector: 'app-pack-results',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pack-results.component.scss']
 })
 export class PackResultsComponent implements OnInit {
+  public sessions$ = this.sessionsQuery.activePackSessions$;
 
-  constructor() { }
+  constructor(
+    private sessionsQuery: TrainingSessionsQuery,
+  ) { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

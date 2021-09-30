@@ -1,1 +1,7 @@
-<app-pack-seconds-per-success-chart></app-pack-seconds-per-success-chart>
+<ng-container *ngIf="sessions$ | async as sessions">
+  <app-grid [columns]="2">
+    <app-pack-seconds-per-success-chart [sessions]="sessions"></app-pack-seconds-per-success-chart>
+
+    <app-pack-accuracy-chart [sessions]="sessions"></app-pack-accuracy-chart>
+  </app-grid>
+</ng-container>

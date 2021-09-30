@@ -1,14 +1,13 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { TrainingSession, TrainingSessionsQuery } from 'src/app/training-sessions/state';
+import { Component, Input, OnInit } from '@angular/core';
+import { TrainingSession } from 'src/app/training-sessions/state';
 import { ScatterChartOptions } from 'src/app/ui/charts/charts.interfaces';
 
 @Component({
-  selector: 'app-pack-seconds-per-success-chart',
-  templateUrl: './pack-seconds-per-success-chart.component.html',
-  styleUrls: ['./pack-seconds-per-success-chart.component.scss']
+  selector: 'app-pack-accuracy-chart',
+  templateUrl: './pack-accuracy-chart.component.html',
+  styleUrls: ['./pack-accuracy-chart.component.scss']
 })
-export class PackSecondsPerSuccessChartComponent implements OnInit {
+export class PackAccuracyChartComponent implements OnInit {
   @Input() set sessions(sessions: TrainingSession[]) {
     this.setOptionsFromSessions(sessions);
   }
@@ -30,7 +29,7 @@ export class PackSecondsPerSuccessChartComponent implements OnInit {
 
   private getDataFromSession(session: TrainingSession): any[] {
     return session.results
-      ? [session.startTime, session.results.time / session.results.successes]
+      ? [session.startTime, session.results.successes / (session.results.successes + session.results.failures)]
       : [undefined, undefined];
   }
 }
