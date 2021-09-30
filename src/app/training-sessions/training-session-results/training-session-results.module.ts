@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrainingSessionResultsComponent } from './training-session-results.component';
-import { ContainerModule } from 'src/app/ui/container/container.module';
 
 
 
@@ -11,7 +10,6 @@ import { ContainerModule } from 'src/app/ui/container/container.module';
   ],
   imports: [
     CommonModule,
-    ContainerModule,
   ],
   exports: [
     TrainingSessionResultsComponent
