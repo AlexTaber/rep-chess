@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PackResultsComponent } from './pack-results.component';
-import { LineChartModule } from 'src/app/ui/charts/line-chart/line-chart.module';
-
+import { PackSecondsPerSuccessChartModule } from '../pack-seconds-per-success-chart/pack-seconds-per-success-chart.module';
 
 
 @NgModule({
@@ -11,7 +10,7 @@ import { LineChartModule } from 'src/app/ui/charts/line-chart/line-chart.module'
   ],
   imports: [
     CommonModule,
-    LineChartModule,
+    PackSecondsPerSuccessChartModule,
   ],
   exports: [
     PackResultsComponent

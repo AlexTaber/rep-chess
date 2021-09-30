@@ -15,6 +15,7 @@ export const MOCK_PACKS: Pack[] = [
     id: "adklfjaldsf",
     name: "Easy Forks",
     exercises: repo.getMany({
+      limit: 5,
       themes: ["fork"],
       ratingRange: {
         low: 800,

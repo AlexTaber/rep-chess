@@ -10,7 +10,12 @@ export class MockedExercisesRepository {
   public getMany(filter: ExerciseFilter): LichessExercise[] {
     let exercises = this.exercises;
     exercises = this.checkApplyThemesFilter(exercises, filter);
-    return this.checkApplyRatingFilter(exercises, filter);
+    exercises = this.checkApplyRatingFilter(exercises, filter);
+    return this.checkApplyLimit(exercises, filter.limit);
+  }
+
+  private checkApplyLimit(exercises: LichessExercise[], limit: number | undefined): LichessExercise[] {
+    return limit ? exercises.slice(0, limit) : exercises;
   }
 
   private checkApplyThemesFilter(exercises: LichessExercise[], filter: ExerciseFilter): LichessExercise[] {

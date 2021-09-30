@@ -25,6 +25,7 @@ export interface LichessExerciseData extends ExerciseData {
 export interface ExerciseFilter {
   themes?: ExerciseTheme[];
   ratingRange?: ExerciseRatingRange;
+  limit?: number;
 }
 
 export interface ExerciseRatingRange {
