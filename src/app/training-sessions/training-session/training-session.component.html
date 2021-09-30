@@ -1,5 +1,7 @@
 <app-container>
   <app-training-session-clock (complete)="onSessionComplete()"></app-training-session-clock>
 
+  <button mat-raised-button (click)="onSessionComplete()">End Session</button>
+
   <app-training-session-exercise (complete)="onExerciseComplete()"></app-training-session-exercise>
 </app-container>
