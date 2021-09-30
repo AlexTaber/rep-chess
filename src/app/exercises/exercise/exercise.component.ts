@@ -22,7 +22,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   private exerciseSub: Subscription | undefined;
   private board?: NgxChessBoardComponent;
-  private pauseTime = 500;
+  private pauseTime = 250;
 
   private get exercise(): Exercise | undefined {
     return this.exercisesQuery.getActive() as Exercise | undefined;

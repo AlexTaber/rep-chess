@@ -3,5 +3,11 @@
     <app-grid-item *ngFor="let pack of packs$ | async">
       <app-pack-card [pack]="pack"></app-pack-card>
     </app-grid-item>
+
+    <app-grid-item>
+      <button mat-raised-button color="primary">
+        Create Pack
+      </button>
+    </app-grid-item>
   </app-grid>
 </app-container>
