@@ -23,6 +23,7 @@
     "paths": {
       "stream": [ "./node_modules/stream-browserify" ]
     },
+    "types": ["lodash"],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

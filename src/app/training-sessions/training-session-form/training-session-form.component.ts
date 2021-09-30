@@ -27,6 +27,10 @@ export class TrainingSessionFormComponent implements OnInit {
     this.updatePayload({ seconds: parseInt((event.target as HTMLInputElement).value) })
   }
 
+  public updateShuffle(shuffle: boolean): void {
+    this.updatePayload({ shuffle });
+  }
+
   public onSubmit(payload: TrainingSessionFormPayload): void {
     this.submit.emit(payload);
   }

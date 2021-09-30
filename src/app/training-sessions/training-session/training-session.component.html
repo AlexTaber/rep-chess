@@ -1,7 +1,15 @@
 <app-container>
-  <app-training-session-clock (complete)="onSessionComplete()"></app-training-session-clock>
+  <app-grid>
+    <app-grid-item>
+      <app-training-session-clock (complete)="onSessionComplete()"></app-training-session-clock>
 
-  <button mat-raised-button (click)="onSessionComplete()">End Session</button>
+      <button mat-raised-button (click)="onSessionComplete()">End Session</button>
 
-  <app-training-session-exercise (complete)="onExerciseComplete()"></app-training-session-exercise>
+      <app-training-session-exercise (complete)="onExerciseComplete()"></app-training-session-exercise>
+    </app-grid-item>
+
+    <app-grid-item>
+      <app-training-session-results></app-training-session-results>
+    </app-grid-item>
+  </app-grid>
 </app-container>

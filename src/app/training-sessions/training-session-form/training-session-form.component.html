@@ -11,5 +11,7 @@
     <input matInput type="number" [value]="payload.seconds" (change)="updateSeconds($event)">
   </mat-form-field>
 
+  <mat-checkbox [checked]="payload.shuffle" (change)="updateShuffle($event.checked)"></mat-checkbox>
+
   <button mat-flat-button color="primary" type="submit">Start TrainingSession</button>
 </form>

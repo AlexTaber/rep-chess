@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ID } from '@datorama/akita';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { Subscription } from 'rxjs';
 import { TrainingSession, TrainingSessionsQuery } from '../state';
@@ -16,6 +16,7 @@ export class TrainingSessionClockComponent implements OnInit, OnDestroy {
   public config: CountdownConfig = {};
 
   private activeSessionSub?: Subscription;
+  private previousSessionId?: ID;
 
   constructor(
     private trainingSessionsQuery: TrainingSessionsQuery,
@@ -44,12 +45,13 @@ export class TrainingSessionClockComponent implements OnInit, OnDestroy {
   }
 
   private checkSetConfigFromSession(session: TrainingSession | undefined): void {
-    if (session) {
+    if (session && this.previousSessionId !== session.id) {
       this.setConfigFromSession(session);
     }
   }
 
   private setConfigFromSession(session: TrainingSession): void {
+    this.previousSessionId = session.id;
     this.config = {
       leftTime: session.config.targetTime,
     }

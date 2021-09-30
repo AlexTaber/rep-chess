@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
-import { Exercise, ExercisesQuery } from 'src/app/exercises/state';
+import { Exercise, ExercisesQuery, ExercisesService } from 'src/app/exercises/state';
 import { Pack, PacksQuery } from 'src/app/packs/state';
 import { TrainingSessionExercisesService } from 'src/app/training-session-exercises/state';
 import { TimeInSeconds, TrainingSession, TrainingSessionsQuery, TrainingSessionsService } from '../state';
@@ -15,6 +15,10 @@ import { TrainingSessionFormPayload } from '../training-session-form/state/train
 })
 export class TrainingSessionComponent implements OnInit {
   public session$ = this.sessionsQuery.selectActive();
+
+  private get payload(): TrainingSessionFormPayload {
+    return this.sessionFormQuery.getValue().payload;
+  }
 
   private get firstExercise(): Exercise | undefined {
     return this.exercisesQuery.getFirst();
@@ -30,6 +34,7 @@ export class TrainingSessionComponent implements OnInit {
     private sessionExercisesService: TrainingSessionExercisesService,
     private sessionFormQuery: TrainingSessionFormQuery,
     private packsQuery: PacksQuery,
+    private exercisesService: ExercisesService,
     private exercisesQuery: ExercisesQuery,
     private router: Router,
   ) { }
@@ -39,6 +44,7 @@ export class TrainingSessionComponent implements OnInit {
   }
 
   public onExerciseComplete(): void {
+    this.setResults();
     this.createSessionExerciseFromExercise(this.nextExercise);
   }
 
@@ -53,11 +59,10 @@ export class TrainingSessionComponent implements OnInit {
   }
 
   private getTrainingSessionFromPayload(): Partial<TrainingSession> {
-    const payload = this.sessionFormQuery.getValue().payload;
     return {
       packId: this.getActivePackId(),
       config: {
-        targetTime: payload.unlimitedMode ? undefined : this.getTimeFromPayload(payload)
+        targetTime: this.payload.unlimitedMode ? undefined : this.getTimeFromPayload(this.payload)
       },
       exercises: [],
       time: 0,
@@ -74,6 +79,7 @@ export class TrainingSessionComponent implements OnInit {
 
   private setActiveTrainingSession(session: TrainingSession): void {
     this.sessionsService.setActive(session.id);
+    this.checkShuffleExercises();
     this.createSessionExerciseFromExercise(this.firstExercise);
   }
 
@@ -82,6 +88,12 @@ export class TrainingSessionComponent implements OnInit {
       trainingSessionId: this.sessionsQuery.getActiveId(),
       exerciseId: exercise?.id,
     }).subscribe(exercise => this.sessionExercisesService.setActive(exercise.id));
+  }
+
+  private checkShuffleExercises(): void {
+    if (this.payload.shuffle) {
+      this.exercisesService.shuffle();
+    }
   }
 
   private setResults(): void {

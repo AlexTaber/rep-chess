@@ -13,8 +13,9 @@ const repo = new MockedExercisesRepository();
 export const MOCK_PACKS: Pack[] = [
   {
     id: "adklfjaldsf",
-    name: "Easy Peasy",
+    name: "Easy Forks",
     exercises: repo.getMany({
+      themes: ["fork"],
       ratingRange: {
         low: 800,
         high: 1000,

@@ -32,6 +32,6 @@ export interface ExerciseRatingRange {
   high: number;
 }
 
-export type ExerciseTheme = "pin";
+export type ExerciseTheme = "pin" | "fork" | "attraction" | "deflection";
 
 export const MOCK_EXERCISES: LichessExercise[] = convertCsvStringToExercises(MOCK_CSVS[0]);
