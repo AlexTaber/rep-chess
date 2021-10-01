@@ -3,6 +3,14 @@
     <h4>{{ pack.name }}</h4>
   </mat-card-header>
 
+  <mat-card-content>
+    <p><small>{{ pack.exercises.length }} Exercises</small></p>
+
+    <p *ngIf="pack.data.ratingRange as range"><small>{{ range.low }} - {{ range.high }} Rating</small></p>
+
+    <p *ngIf="pack.data.themes?.length"><small>{{ pack.data.themes?.join(", ") }}</small></p>
+  </mat-card-content>
+
   <mat-divider></mat-divider>
 
   <mat-card-actions>

@@ -33,6 +33,7 @@ export class PacksService {
       name: payload.name,
       exercises,
       subscribed: true,
+      data: payload.filter,
     }
     this.packsStore.add(pack);
     packSubscriptionsRepo.add(pack.id);
