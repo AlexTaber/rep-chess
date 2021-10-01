@@ -33,6 +33,61 @@ export interface ExerciseRatingRange {
   high: number;
 }
 
-export type ExerciseTheme = "pin" | "fork" | "attraction" | "deflection";
+export const exerciseThemes = [
+  {
+    key: "advancedPawn",
+    name: "Advanced Pawn",
+  },
+  {
+    key: "advantage",
+    name: "Advantage",
+  },
+  {
+    key: "anastasiaMate",
+    name: "Anastasia Mate",
+  },
+  {
+    key: "arabianMate",
+    name: "Arabian Mate",
+  },
+  {
+    key: "backRankMate",
+    name: "Back Rank Mate",
+  },
+  {
+    key: "bishopEndgame",
+    name: "Bishop Endgame",
+  },
+  {
+    key: "bodenMate",
+    name: "Boden Mate",
+  },
+  {
+    key: "castling",
+    name: "Castling",
+  },
+  {
+    key: "capturingDefender",
+    name: "Capture the Defender",
+  },
+  {
+    key: "pin",
+    name: "Pin",
+  },
+  {
+    name: "Fork",
+    key: "fork",
+  },
+  {
+    name: "Attraction",
+    key: "attraction",
+  },
+  {
+    name: "Deflection",
+    key: "deflection",
+  }
+] as const;
+
+export type ExerciseTheme = typeof exerciseThemes[number]["key"];
 
 export const MOCK_EXERCISES: LichessExercise[] = convertCsvStringToExercises(MOCK_CSVS[0]);

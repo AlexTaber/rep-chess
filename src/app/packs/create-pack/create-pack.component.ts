@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PacksFormPayload } from '../packs-form/state/packs-form.store';
+import { PacksService } from '../state';
 
 @Component({
   selector: 'app-create-pack',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatePackComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private packsService: PacksService,
+    private router: Router,
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  public onSubmit(payload: PacksFormPayload): void {
+    this.packsService.create(payload);
+    this.router.navigate(["/packs"]);
   }
-
 }

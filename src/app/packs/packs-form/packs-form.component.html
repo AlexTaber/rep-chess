@@ -1,1 +1,11 @@
-<p>packs-form works!</p>
+<form *ngIf="(payload$ | async) as payload" (submit)="onSubmit(payload)">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+
+    <input matInput [value]="payload.name" (change)="updateName($event)">
+  </mat-form-field>
+
+  <app-exercises-filter-input (filterChange)="updateFilter($event)"></app-exercises-filter-input>
+
+  <button mat-flat-button color="primary" type="submit">Create Pack</button>
+</form>

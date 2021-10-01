@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
-import { ExerciseRatingRange, ExerciseTheme } from 'src/app/exercises/state';
+import { ExercisesFilterInputPayload } from 'src/app/exercises/exercises-filter-input/state/exercises-filter-input.store';
+import { Exercise } from 'src/app/exercises/state';
 
 export interface PacksFormState {
   payload: PacksFormPayload;
 }
 
 export interface PacksFormPayload {
-  themes: ExerciseTheme[];
-  ratingRange: ExerciseRatingRange;
+  name: string;
+  filter: ExercisesFilterInputPayload;
 }
 
 export function createInitialState(): PacksFormState {
   return {
     payload: {
-      themes: [],
-      ratingRange: {
-        low: 1400,
-        high: 1600,
-      }
-    }
+      name: "",
+      filter: {
+        ratingRange: {
+          low: 1400,
+          high: 1600,
+        },
+        themes: [],
+      },
+    },
   };
 }
 

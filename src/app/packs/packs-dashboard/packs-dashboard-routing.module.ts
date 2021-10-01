@@ -6,11 +6,17 @@ import { PackComponent } from '../pack/pack.component';
 import { PacksDashboardComponent } from './packs-dashboard.component';
 import { TrainingSessionComponent } from 'src/app/training-sessions/training-session/training-session.component';
 import { TrainingSessionResultsPageComponent } from 'src/app/training-sessions/training-session-results-page/training-session-results-page.component';
+import { CreatePackComponent } from '../create-pack/create-pack.component';
 
 const routes: Routes = [
   {
     path: "",
     component: PacksDashboardComponent,
+  },
+
+  {
+    path: "new",
+    component: CreatePackComponent,
   },
 
   {
@@ -30,7 +36,7 @@ const routes: Routes = [
       {
         path: "train",
         component: TrainingSessionComponent,
-      }
+      },
     ]
   },
 

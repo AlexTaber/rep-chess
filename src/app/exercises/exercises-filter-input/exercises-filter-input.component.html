@@ -1,0 +1,21 @@
+<mat-form-field>
+  <mat-label>Rating Low</mat-label>
+
+  <input matInput type="number" (change)="onRatingRangeLowChange($event)">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Rating High</mat-label>
+
+  <input matInput type="number" (change)="onRatingRangeHighChange($event)">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Themes</mat-label>
+
+  <mat-select multiple (selectionChange)="onUpdateThemes($event)">
+    <mat-option *ngFor="let theme of themes" [value]="theme.key">
+      {{ theme.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
