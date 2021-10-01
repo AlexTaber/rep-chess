@@ -1,21 +1,29 @@
-<mat-form-field>
-  <mat-label>Rating Low</mat-label>
+<ng-container *ngIf="payload$ | async as payload">
+  <mat-form-field>
+    <mat-label>Rating Low</mat-label>
 
-  <input matInput type="number" (change)="onRatingRangeLowChange($event)">
-</mat-form-field>
+    <input matInput type="number" [value]="payload.ratingRange.low" (change)="onRatingRangeLowChange($event)">
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Rating High</mat-label>
+  <mat-form-field>
+    <mat-label>Rating High</mat-label>
 
-  <input matInput type="number" (change)="onRatingRangeHighChange($event)">
-</mat-form-field>
+    <input matInput type="number" [value]="payload.ratingRange.high" (change)="onRatingRangeHighChange($event)">
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Themes</mat-label>
+  <mat-form-field>
+    <mat-label>Exercise Count</mat-label>
 
-  <mat-select multiple (selectionChange)="onUpdateThemes($event)">
-    <mat-option *ngFor="let theme of themes" [value]="theme.key">
-      {{ theme.name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+    <input matInput type="number" [value]="payload.limit" (change)="onLimitChange($event)">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Themes</mat-label>
+
+    <mat-select multiple [value]="payload.themes" (selectionChange)="onUpdateThemes($event)">
+      <mat-option *ngFor="let theme of themes" [value]="theme.key">
+        {{ theme.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>

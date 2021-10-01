@@ -11,7 +11,7 @@ export class MockedExercisesRepository {
     let exercises = this.exercises;
     exercises = this.checkApplyThemesFilter(exercises, filter);
     exercises = this.checkApplyRatingFilter(exercises, filter);
-    return this.checkApplyLimit(exercises, filter.limit);
+    return this.checkApplyLimit(exercises, filter.limit || 1000);
   }
 
   private checkApplyLimit(exercises: LichessExercise[], limit: number | undefined): LichessExercise[] {
@@ -19,7 +19,7 @@ export class MockedExercisesRepository {
   }
 
   private checkApplyThemesFilter(exercises: LichessExercise[], filter: ExerciseFilter): LichessExercise[] {
-    return filter.themes ? this.applyThemesFilter(exercises, filter.themes) : exercises;
+    return filter.themes?.length ? this.applyThemesFilter(exercises, filter.themes) : exercises;
   }
 
   private applyThemesFilter(exercises: LichessExercise[], themes: ExerciseTheme[]): LichessExercise[] {

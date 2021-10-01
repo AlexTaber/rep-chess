@@ -9,6 +9,7 @@ export interface ExercisesFilterInputState {
 export interface ExercisesFilterInputPayload {
   ratingRange: ExerciseRatingRange;
   themes: ExerciseTheme[]
+  limit: number;
 }
 
 export function createInitialState(): ExercisesFilterInputState {
@@ -19,6 +20,7 @@ export function createInitialState(): ExercisesFilterInputState {
         high: 1600,
       },
       themes: [],
+      limit: 500,
     }
   };
 }

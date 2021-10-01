@@ -27,6 +27,10 @@ export class ExercisesFilterInputService {
     });
   }
 
+  public updateLimit(limit: number): void {
+    this.updatePayload({ limit });
+  }
+
   public updateThemes(themes: ExerciseTheme[]): void {
     this.updatePayload({ themes });
   }

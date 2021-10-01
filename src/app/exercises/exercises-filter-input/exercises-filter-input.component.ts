@@ -32,6 +32,11 @@ export class ExercisesFilterInputComponent implements OnInit {
     this.emitChange();
   }
 
+  public onLimitChange(event: Event): void {
+    this.service.updateLimit(parseInt((event.target as HTMLInputElement).value))
+    this.emitChange();
+  }
+
   public onUpdateThemes(event: MatSelectChange): void {
     this.service.updateThemes(event.value)
     this.emitChange();

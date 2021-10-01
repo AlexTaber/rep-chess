@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatRadioChange } from '@angular/material/radio';
 import { TrainingSessionFormQuery, TrainingSessionFormService } from './state';
 import { TrainingSessionFormPayload } from './state/training-session-form.store';
 
@@ -18,6 +19,10 @@ export class TrainingSessionFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {}
+
+  public onUnlimitedModeChange(event: MatRadioChange): void {
+    this.updatePayload({ unlimitedMode: event.value });
+  }
 
   public updateMinutes(event: Event): void {
     this.updatePayload({ minutes: parseInt((event.target as HTMLInputElement).value) })

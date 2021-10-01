@@ -1,1 +1,1 @@
-<countdown [config]="config" (event)="onEvent($event)"></countdown>
+<countdown *ngIf="(session$ | async)?.config?.targetTime" [config]="config" (event)="onEvent($event)"></countdown>

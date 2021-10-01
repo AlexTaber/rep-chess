@@ -22,6 +22,7 @@ export function createInitialState(): PacksFormState {
           high: 1600,
         },
         themes: [],
+        limit: 500,
       },
     },
   };

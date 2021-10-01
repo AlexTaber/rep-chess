@@ -9,6 +9,7 @@ import { NavBarModule } from './nav-bar/nav-bar.module';
 import { PacksDashboardModule } from './packs/packs-dashboard/packs-dashboard.module';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
+import { DrawerNavModule } from './layout/drawer-nav/drawer-nav.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     BrowserAnimationsModule,
     NavBarModule,
+    DrawerNavModule,
     PacksDashboardModule,
     MatSidenavModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),

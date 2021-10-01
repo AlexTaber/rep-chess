@@ -45,8 +45,9 @@ export class TrainingSessionClockComponent implements OnInit, OnDestroy {
   }
 
   private checkSetConfigFromSession(session: TrainingSession | undefined): void {
-    if (session && this.previousSessionId !== session.id) {
-      this.setConfigFromSession(session);
+    const shouldSetConfig = session && this.previousSessionId !== session.id;
+    if (shouldSetConfig) {
+      this.setConfigFromSession(session!);
     }
   }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatRadioModule } from "@angular/material/radio";
 import { TrainingSessionFormComponent } from './training-session-form.component';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -18,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatRadioModule,
   ],
   exports: [
     TrainingSessionFormComponent
