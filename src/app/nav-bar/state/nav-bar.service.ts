@@ -8,6 +8,10 @@ export class NavBarService {
   }
 
   public toggleOpen(): void {
-    this.navBarStore.update({ open: !this.navBarStore.getValue().open });
+    this.setOpen(!this.navBarStore.getValue().open );
+  }
+
+  public setOpen(open: boolean): void {
+    this.navBarStore.update({ open });
   }
 }

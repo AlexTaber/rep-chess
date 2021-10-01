@@ -12,6 +12,11 @@ const routes: Routes = [
     path: "packs",
     loadChildren: () => import('./packs/packs-dashboard/packs-dashboard.module').then(m => m.PacksDashboardModule)
   },
+
+  {
+    path: "stats",
+    loadChildren: () => import('./stats-dashboard/stats-dashboard.module').then(m => m.StatsDashboardModule)
+  },
 ];
 
 @NgModule({
