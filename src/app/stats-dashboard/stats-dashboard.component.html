@@ -1,3 +1,11 @@
-<app-container>
-  <app-quick-stats></app-quick-stats>
+<app-container *ngIf="sessions$ | async as sessions">
+  <app-grid [columns]="1">
+    <app-grid-item>
+      <app-quick-stats></app-quick-stats>
+    </app-grid-item>
+
+    <app-grid-item>
+      <app-training-sessions-calendar [sessions]="sessions"></app-training-sessions-calendar>
+    </app-grid-item>
+  </app-grid>
 </app-container>

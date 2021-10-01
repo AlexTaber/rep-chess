@@ -3,11 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 import * as echarts from 'echarts/core';
-import { ScatterChart } from 'echarts/charts';
+import { ScatterChart, HeatmapChart } from 'echarts/charts';
 import { TitleComponent, TooltipComponent, GridComponent, LegendComponent, } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 
-echarts.use([TitleComponent, TooltipComponent, GridComponent, LegendComponent, ScatterChart, CanvasRenderer]);
+echarts.use([
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent,
+  ScatterChart,
+  HeatmapChart,
+  CanvasRenderer
+]);
 
 
 @NgModule({

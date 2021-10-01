@@ -1,10 +1,11 @@
 export type ChartOptions = any;
 
-interface BaseChartOptions {
+interface BaseChartOptions<T = any[][]> {
   xAxis?: any;
   yAxis?: any;
+  data: T;
 }
 
-export interface ScatterChartOptions extends BaseChartOptions {
-  data: any[][];
-}
+export type ScatterChartOptions = BaseChartOptions;
+
+export type CalendarChartOptions = BaseChartOptions;

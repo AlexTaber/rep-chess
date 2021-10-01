@@ -1,25 +1,27 @@
-<ng-container *ngIf="stats">
-  <h3>Quick Stats</h3>
+<mat-card *ngIf="stats">
+  <mat-card-title>
+    <h2>Quick Stats</h2>
+  </mat-card-title>
 
   <app-grid [columns]="2">
-    <mat-card>
+    <app-grid-item>
       <mat-card-header>
-        <h4>Session Totals</h4>
+        <h3>Session Totals</h3>
       </mat-card-header>
 
       <mat-card-content>
         <p>{{ stats.sessionCount }} Sessions  |  {{ stats.trainingTime }} Seconds</p>
       </mat-card-content>
-    </mat-card>
+    </app-grid-item>
 
-    <mat-card>
+    <app-grid-item>
       <mat-card-header>
-        <h4>Session Averages</h4>
+        <h3>Session Averages</h3>
       </mat-card-header>
 
       <mat-card-content>
         <p>{{ stats.averageSuccesses }} Solves  |  {{ stats.averageFailures }} Misses</p>
       </mat-card-content>
-    </mat-card>
+    </app-grid-item>
   </app-grid>
-</ng-container>
+</mat-card>
