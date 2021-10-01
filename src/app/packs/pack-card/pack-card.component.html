@@ -7,5 +7,7 @@
 
   <mat-card-actions>
     <button mat-button [routerLink]="['/packs', pack.id, 'sessions', 'new']">Train</button>
+
+    <app-toggle-pack-subscription [pack]="pack"></app-toggle-pack-subscription>
   </mat-card-actions>
 </mat-card>

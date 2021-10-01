@@ -1,14 +1,16 @@
 import { ID } from "@datorama/akita";
 import { Exercise } from "src/app/exercises/state/exercise.model";
-import { MockedExercisesRepository } from "src/app/shared/utils/mocked-exercises.repository";
+import { MockedExercisesRepo } from "src/app/shared/mock-repos/mocked-exercises.repository";
+import { packSubscriptionsRepo } from "src/app/shared/mock-repos/mocked-pack-subscriptions.repository";
 
 export interface Pack {
   id: ID;
   name: string;
   exercises: Exercise[];
+  subscribed: boolean;
 }
 
-const repo = new MockedExercisesRepository();
+const repo = new MockedExercisesRepo();
 
 export const MOCK_PACKS: Pack[] = [
   {
@@ -21,6 +23,7 @@ export const MOCK_PACKS: Pack[] = [
         high: 1000,
       },
     }),
+    subscribed: false,
   },
 
   {
@@ -33,5 +36,8 @@ export const MOCK_PACKS: Pack[] = [
         high: 2100,
       }
     }),
+    subscribed: false,
   }
 ]
+
+packSubscriptionsRepo.addMany(MOCK_PACKS.map(pack => pack.id).slice(0, 1));

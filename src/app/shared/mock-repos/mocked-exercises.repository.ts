@@ -4,7 +4,7 @@ import { ExerciseFilter, ExerciseRatingRange, ExerciseTheme, LichessExercise, MO
 @Injectable({
   providedIn: "root",
 })
-export class MockedExercisesRepository {
+export class MockedExercisesRepo {
   private exercises = MOCK_EXERCISES;
 
   public getMany(filter: ExerciseFilter): LichessExercise[] {

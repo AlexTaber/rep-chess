@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PacksQuery, PacksService } from '../state';
+import { PacksQuery } from '../state';
 
 @Component({
   selector: 'app-packs-dashboard',
@@ -7,7 +7,8 @@ import { PacksQuery, PacksService } from '../state';
   styleUrls: ['./packs-dashboard.component.scss']
 })
 export class PacksDashboardComponent implements OnInit {
-  public packs$ = this.packsQuery.packs$;
+  public subscribedPacks$ = this.packsQuery.subscribedPacks$;
+  public unsubscribedPacks$ = this.packsQuery.unsubscribedPacks$;
 
   constructor(
     private packsQuery: PacksQuery,

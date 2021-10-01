@@ -1,0 +1,9 @@
+<ng-container *ngIf="pack">
+  <button *ngIf="!pack.subscribed" mat-button (click)="onSubscribe(pack.id)">
+    Subscribe
+  </button>
+
+  <button *ngIf="pack.subscribed" mat-button (click)="onUnsubscribe(pack.id)">
+    Unsubscribe
+  </button>
+</ng-container>

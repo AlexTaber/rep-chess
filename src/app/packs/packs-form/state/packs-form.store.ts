@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 import { ExercisesFilterInputPayload } from 'src/app/exercises/exercises-filter-input/state/exercises-filter-input.store';
-import { Exercise } from 'src/app/exercises/state';
 
 export interface PacksFormState {
   payload: PacksFormPayload;

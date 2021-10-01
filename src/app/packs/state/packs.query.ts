@@ -6,7 +6,14 @@ import { PacksStore, PacksState } from './packs.store';
 
 @Injectable({ providedIn: 'root' })
 export class PacksQuery extends QueryEntity<PacksState> {
-  public packs$ = this.selectAll();
+  public subscribedPacks$ = this.selectAll({
+    filterBy: pack => pack.subscribed
+  });
+
+  public unsubscribedPacks$ = this.selectAll({
+    filterBy: pack =>  !pack.subscribed
+  });
+
   public activePack$ = this.selectActive() as Observable<Pack>;
 
   constructor(protected store: PacksStore) {

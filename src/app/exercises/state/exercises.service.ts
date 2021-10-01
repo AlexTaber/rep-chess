@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ID } from '@datorama/akita';
 import { shuffle } from 'lodash';
 import { Observable, of } from 'rxjs';
-import { MockedExercisesRepository } from 'src/app/shared/utils/mocked-exercises.repository';
+import { MockedExercisesRepo } from 'src/app/shared/mock-repos/mocked-exercises.repository';
 import { Exercise, ExerciseFilter, ExercisesQuery } from '.';
 import { ExercisesStore } from './exercises.store';
 
@@ -11,7 +11,7 @@ export class ExercisesService {
   constructor(
     private exercisesStore: ExercisesStore,
     private exercisesQuery: ExercisesQuery,
-    private repo: MockedExercisesRepository,
+    private repo: MockedExercisesRepo,
   ) {}
 
   public fetch(filter: ExerciseFilter): Observable<Exercise[]> {

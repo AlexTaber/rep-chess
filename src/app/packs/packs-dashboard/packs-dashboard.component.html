@@ -1,6 +1,10 @@
 <app-container>
+  <h2>
+    My Packs
+  </h2>
+
   <app-grid>
-    <app-grid-item *ngFor="let pack of packs$ | async">
+    <app-grid-item *ngFor="let pack of subscribedPacks$ | async">
       <app-pack-card [pack]="pack"></app-pack-card>
     </app-grid-item>
 
@@ -8,6 +12,16 @@
       <button mat-raised-button color="primary" [routerLink]="['new']">
         Create Pack
       </button>
+    </app-grid-item>
+  </app-grid>
+
+  <h2>
+    Browse
+  </h2>
+
+  <app-grid>
+    <app-grid-item *ngFor="let pack of unsubscribedPacks$ | async">
+      <app-pack-card [pack]="pack"></app-pack-card>
     </app-grid-item>
   </app-grid>
 </app-container>

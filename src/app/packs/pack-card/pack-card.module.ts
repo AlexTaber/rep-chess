@@ -5,6 +5,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { PackCardComponent } from './pack-card.component';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { TogglePackSubscriptionModule } from '../toggle-pack-subscription/toggle-pack-subscription.module';
 
 
 
@@ -18,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatDividerModule,
     RouterModule,
+    TogglePackSubscriptionModule,
   ],
   exports: [
     PackCardComponent
