@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NavBarQuery, NavBarService } from './nav-bar/state';
-import { PacksService } from './packs/state';
+import { PacksQuery, PacksService } from './packs/state';
 import { filter } from "rxjs/operators";
 
 @Component({
@@ -16,12 +16,19 @@ export class AppComponent implements OnInit {
     private navBarQuery: NavBarQuery,
     private navBarService: NavBarService,
     private packsService: PacksService,
+    private packsQuery: PacksQuery,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.packsService.fetch();
+    this.fetchPacks();
     this.subscribeToRouterEvents();
+  }
+
+  private fetchPacks(): void {
+    if (this.packsQuery.getAll().length == 0) {
+      this.packsService.fetch();
+    }
   }
 
   private subscribeToRouterEvents(): void {

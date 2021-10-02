@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { shuffle } from "lodash";
 import { ExerciseFilter, ExerciseRatingRange, ExerciseTheme, LichessExercise, MOCK_EXERCISES } from "src/app/exercises/state";
 
 @Injectable({
@@ -8,7 +9,7 @@ export class MockedExercisesRepo {
   private exercises = MOCK_EXERCISES;
 
   public getMany(filter: ExerciseFilter): LichessExercise[] {
-    let exercises = this.exercises;
+    let exercises = shuffle(this.exercises);
     exercises = this.checkApplyThemesFilter(exercises, filter);
     exercises = this.checkApplyRatingFilter(exercises, filter);
     return this.checkApplyLimit(exercises, filter.limit || 1000);
