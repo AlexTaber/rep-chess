@@ -1,7 +1,23 @@
 <ng-container *ngIf="sessions$ | async as sessions">
   <app-grid [columns]="2">
-    <app-pack-seconds-per-success-chart [sessions]="sessions"></app-pack-seconds-per-success-chart>
+    <app-grid-item>
+      <mat-card>
+        <app-pack-seconds-per-success-chart [sessions]="sessions"></app-pack-seconds-per-success-chart>
+      </mat-card>
+    </app-grid-item>
 
-    <app-pack-accuracy-chart [sessions]="sessions"></app-pack-accuracy-chart>
+    <app-grid-item>
+      <mat-card>
+        <app-pack-accuracy-chart [sessions]="sessions"></app-pack-accuracy-chart>
+      </mat-card>
+    </app-grid-item>
+
+    <app-grid-item [colSpan]="2">
+      <app-training-sessions-quick-stats [sessions]="sessions"></app-training-sessions-quick-stats>
+    </app-grid-item>
+
+    <app-grid-item [colSpan]="2">
+      <app-training-sessions-calendar [sessions]="sessions"></app-training-sessions-calendar>
+    </app-grid-item>
   </app-grid>
 </ng-container>

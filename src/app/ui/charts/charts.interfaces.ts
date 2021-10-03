@@ -9,3 +9,12 @@ interface BaseChartOptions<T = any[][]> {
 export type ScatterChartOptions = BaseChartOptions;
 
 export type CalendarChartOptions = BaseChartOptions;
+
+export interface BarChartOptions extends BaseChartOptions {
+  categories: string[];
+}
+
+export interface ScatterBarChartOptions {
+  bar: BarChartOptions;
+  scatter: ScatterChartOptions;
+}

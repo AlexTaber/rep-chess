@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartOptions, ScatterChartOptions } from '../charts.interfaces';
+import { getFormattedScatterChartOptions } from '../utils';
 
 @Component({
   selector: 'app-scatter-chart',
@@ -18,16 +19,6 @@ export class ScatterChartComponent implements OnInit {
   ngOnInit(): void {}
 
   private setFormattedOptions(options: ScatterChartOptions): ChartOptions {
-    this.formattedOptions = {
-      xAxis: options.xAxis || {},
-      yAxis: options.yAxis || {},
-      series: [
-        {
-          symbolSize: 10,
-          data: options.data,
-          type: 'scatter'
-        }
-      ]
-    };
+    this.formattedOptions = getFormattedScatterChartOptions(options);
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuickStatsComponent } from './quick-stats.component';
+import { TrainingSessionsQuickStatsComponent } from './training-sessions-quick-stats.component';
 import { MatCardModule } from '@angular/material/card';
 import { GridModule } from 'src/app/ui/grid/grid.module';
 
@@ -8,7 +8,7 @@ import { GridModule } from 'src/app/ui/grid/grid.module';
 
 @NgModule({
   declarations: [
-    QuickStatsComponent
+    TrainingSessionsQuickStatsComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +16,7 @@ import { GridModule } from 'src/app/ui/grid/grid.module';
     GridModule,
   ],
   exports: [
-    QuickStatsComponent
+    TrainingSessionsQuickStatsComponent
   ]
 })
-export class QuickStatsModule { }
+export class TrainingSessionsQuickStatsModule { }

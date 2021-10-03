@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuickStatsComponent } from './quick-stats.component';
+import { PackResultsPageComponent } from './pack-results-page.component';
 
-describe('QuickStatsComponent', () => {
-  let component: QuickStatsComponent;
-  let fixture: ComponentFixture<QuickStatsComponent>;
+describe('PackResultsPageComponent', () => {
+  let component: PackResultsPageComponent;
+  let fixture: ComponentFixture<PackResultsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuickStatsComponent ]
+      declarations: [ PackResultsPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuickStatsComponent);
+    fixture = TestBed.createComponent(PackResultsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

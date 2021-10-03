@@ -12,6 +12,7 @@ import { TrainingSessionModule } from 'src/app/training-sessions/training-sessio
 import { TrainingSessionResultsPageModule } from 'src/app/training-sessions/training-session-results-page/training-session-results-page.module';
 import { MatButtonModule } from '@angular/material/button';
 import { CreatePackModule } from '../create-pack/create-pack.module';
+import { PackResultsPageModule } from '../pack-results-page/pack-results-page.module';
 
 
 
@@ -32,6 +33,7 @@ import { CreatePackModule } from '../create-pack/create-pack.module';
     TrainingSessionModule,
     TrainingSessionResultsPageModule,
     CreatePackModule,
+    PackResultsPageModule,
   ],
   exports: [
     PacksDashboardComponent

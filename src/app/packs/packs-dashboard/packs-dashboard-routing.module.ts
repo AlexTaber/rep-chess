@@ -7,6 +7,7 @@ import { PacksDashboardComponent } from './packs-dashboard.component';
 import { TrainingSessionComponent } from 'src/app/training-sessions/training-session/training-session.component';
 import { TrainingSessionResultsPageComponent } from 'src/app/training-sessions/training-session-results-page/training-session-results-page.component';
 import { CreatePackComponent } from '../create-pack/create-pack.component';
+import { PackResultsPageComponent } from '../pack-results-page/pack-results-page.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
       {
         path: "train",
         component: TrainingSessionComponent,
+      },
+
+      {
+        path: "stats",
+        component: PackResultsPageComponent,
       },
     ]
   },
