@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BarChartOptions, ChartOptions, ScatterBarChartOptions } from '../charts.interfaces';
-import { getFormattedScatterChartOptions } from '../utils';
+import { ChartOptions, ScatterBarChartOptions } from '../charts.interfaces';
+import { getFormattedScatterChartSeries } from '../utils';
 
 @Component({
   selector: 'app-scatter-bar-chart',
@@ -30,33 +30,42 @@ export class ScatterBarChartComponent implements OnInit {
 
   private setChartsOptions(options: ScatterBarChartOptions): ChartOptions {
     this.formattedChartsOptions = {
-      bar: this.getFormattedBarOptions(options.bar),
+      bar: this.getFormattedBarOptions(options),
       scatter: {
-        ...getFormattedScatterChartOptions(options.scatter),
+        xAxis: { ...options.scatterSettings.xAxis, scale: true },
+        yAxis: { ...options.scatterSettings.yAxis, scale: true },
+        series: options.categories.map(c => ({
+          ...getFormattedScatterChartSeries(c.scatterData),
+          id: c.name,
+          dataGroupId: c.name,
+        })),
         universalTransition: {
           enabled: true,
+          delay: () => Math.random() * 400,
         },
       }
     }
   }
 
-  private getFormattedBarOptions(options: BarChartOptions): ChartOptions {
+  private getFormattedBarOptions(options: ScatterBarChartOptions): ChartOptions {
+    const categoryNames = options.categories.map(category => category.name);
     return {
       xAxis: {
         type: 'category',
-        data: options.categories,
-        ...options.xAxis
+        data: categoryNames,
       },
-      yAxis: options.yAxis || {},
+      yAxis: {},
       series: [
         {
           type: 'bar',
           id: 'total',
-          data: options.data,
+          data: options.categories.map(category => ({ groupId: category.name, value: category.barData })),
         }
       ],
       universalTransition: {
         enabled: true,
+        seriesKey: categoryNames,
+        delay: () => Math.random() * 400,
       }
     };
   }
@@ -72,5 +81,7 @@ export class ScatterBarChartComponent implements OnInit {
     this.formattedOptions = this.formattedOptions === this.formattedChartsOptions?.scatter
       ? this.formattedChartsOptions?.bar
       : this.formattedChartsOptions?.scatter;
+
+    console.log(this.formattedOptions);
   }
 }

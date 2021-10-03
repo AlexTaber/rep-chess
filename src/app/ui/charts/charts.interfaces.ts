@@ -15,6 +15,15 @@ export interface BarChartOptions extends BaseChartOptions {
 }
 
 export interface ScatterBarChartOptions {
-  bar: BarChartOptions;
-  scatter: ScatterChartOptions;
+  scatterSettings: {
+    xAxis?: any;
+    yAxis?: any;
+  },
+  categories: ScatterChartCategory[];
+}
+
+export interface ScatterChartCategory {
+  name: string;
+  barData: number;
+  scatterData: any[][];
 }

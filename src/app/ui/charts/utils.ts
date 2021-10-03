@@ -5,11 +5,15 @@ export const getFormattedScatterChartOptions = (options: ScatterChartOptions) =>
     xAxis: options.xAxis || {},
     yAxis: options.yAxis || {},
     series: [
-      {
-        symbolSize: 10,
-        data: options.data,
-        type: 'scatter'
-      }
+      getFormattedScatterChartSeries(options.data)
     ]
   };
+}
+
+export const getFormattedScatterChartSeries = (data: any[][]) => {
+  return {
+      symbolSize: 10,
+      data: data,
+      type: 'scatter'
+    }
 }

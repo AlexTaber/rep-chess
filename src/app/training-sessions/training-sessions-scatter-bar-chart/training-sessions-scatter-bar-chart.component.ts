@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ID } from '@datorama/akita';
-import { PacksQuery } from 'src/app/packs/state';
-import { ScatterBarChartOptions } from 'src/app/ui/charts/charts.interfaces';
+import { Pack, PacksQuery } from 'src/app/packs/state';
+import { ScatterBarChartOptions, ScatterChartCategory } from 'src/app/ui/charts/charts.interfaces';
 import { TrainingSession, TrainingSessionResults } from '../state';
 
 @Component({
@@ -25,18 +25,24 @@ export class TrainingSessionsScatterBarChartComponent implements OnInit {
   private setOptionsFromSessions(sessions: TrainingSession[]): void {
     const uniquePackIds = this.getUniquePackIds(sessions);
     this.options = {
-      scatter: {
+      scatterSettings: {
         xAxis: {
           type: "time",
           min: (value: any) => value.min - 100,
           max: (value: any) => value.max + 100,
         },
-        data: sessions.map(session => this.getDataFromSession(session))
       },
-      bar: {
-        categories: uniquePackIds.map(id => this.packsQuery.getEntity(id)?.name || ""),
-        data: this.calculateAverages(sessions, uniquePackIds),
-      }
+      categories: uniquePackIds.map(id => this.getCategoryFromPackId(id, sessions)),
+    }
+  }
+
+  private getCategoryFromPackId(packId: ID, sessions: TrainingSession[]): ScatterChartCategory {
+    const pack = this.packsQuery.getEntity(packId) as Pack;
+    const packSessions = sessions.filter(session => session.packId === packId);
+    return {
+      name: pack.name,
+      barData: this.calculateAverageFromSessions(packSessions),
+      scatterData: packSessions.map(session => this.getScatterDataFromSession(session)),
     }
   }
 
@@ -45,7 +51,7 @@ export class TrainingSessionsScatterBarChartComponent implements OnInit {
     return [...new Set(ids)];
   }
 
-  private getDataFromSession(session: TrainingSession): any[] {
+  private getScatterDataFromSession(session: TrainingSession): any[] {
     return session.results
       ? [session.startTime, this.getSuccessesPerMinute(session.results)]
       : [undefined, undefined];
@@ -55,13 +61,8 @@ export class TrainingSessionsScatterBarChartComponent implements OnInit {
     return (results.successes / results.time) * 60
   }
 
-  private calculateAverages(sessions: TrainingSession[], uniquePackIds: ID[]): any[][] {
-    return uniquePackIds.map(id => this.calculateAverageFromId(id, sessions));
-  }
-
-  private calculateAverageFromId(id: ID, sessions: TrainingSession[]): any[] {
-    const currentSessions = sessions.filter(session => session.packId === id);
-    const sum = currentSessions.reduce((sum, session) => sum + this.getSuccessesPerMinute(session.results!), 0);
-    return [this.packsQuery.getEntity(id)?.name, sum / currentSessions.length];
+  private calculateAverageFromSessions(sessions: TrainingSession[]): number {
+    const sum = sessions.reduce((sum, session) => sum + this.getSuccessesPerMinute(session.results!), 0);
+    return sum / sessions.length;
   }
 }
