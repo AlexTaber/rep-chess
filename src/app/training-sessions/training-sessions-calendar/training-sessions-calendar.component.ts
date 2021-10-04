@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CalendarChartOptions } from 'src/app/ui/charts/charts.interfaces';
 import { TrainingSession } from '../state';
-import { time } from "echarts";
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-training-sessions-calendar',
@@ -19,15 +19,27 @@ export class TrainingSessionsCalendarComponent implements OnInit {
 
   private setOptionsFromSessions(sessions: TrainingSession[]): void {
     this.options = {
-      data: sessions.reduce((data, session) => this.reduceDataFromSession(data, session), [] as any[][])
+      series: [
+        {
+          name: "Calendar",
+          data: sessions.reduce((data, session) => this.reduceDataFromSession(data, session), [] as any[][])
+        }
+      ],
     }
   }
 
   private reduceDataFromSession(data: any[][], session: TrainingSession): any[][] {
-    data.push([
-      time.format(session.startTime, 'yyyy-MM-dd', true),
-      1,
-    ])
+    const sessionDate = format(new Date(session.startTime), 'yyyy-MM-dd');
+    const matchingData = data.find(dataItem => dataItem[0] === sessionDate);
+    if (matchingData) {
+      matchingData[1] ++;
+    } else {
+      data.push([
+        sessionDate,
+        1,
+      ])
+    }
+
     return data;
   }
 }

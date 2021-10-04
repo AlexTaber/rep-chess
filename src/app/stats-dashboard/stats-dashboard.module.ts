@@ -7,7 +7,8 @@ import { StatsDashboardComponent } from './stats-dashboard.component';
 import { TrainingSessionsCalendarModule } from '../training-sessions/training-sessions-calendar/training-sessions-calendar.module';
 import { GridModule } from '../ui/grid/grid.module';
 import { TrainingSessionsQuickStatsModule } from '../training-sessions/training-sessions-quick-stats/training-sessions-quick-stats.module';
-import { TrainingSessionsScatterBarChartModule } from '../training-sessions/training-sessions-scatter-bar-chart/training-sessions-scatter-bar-chart.module';
+import { TrainingSessionsSuccessesPerMinuteModule } from '../training-sessions/training-sessions-successes-per-minute/training-sessions-successes-per-minute.module';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -16,12 +17,13 @@ import { TrainingSessionsScatterBarChartModule } from '../training-sessions/trai
   ],
   imports: [
     CommonModule,
+    MatCardModule,
     StatsDashboardRoutingModule,
     ContainerModule,
     GridModule,
     TrainingSessionsQuickStatsModule,
     TrainingSessionsCalendarModule,
-    TrainingSessionsScatterBarChartModule,
+    TrainingSessionsSuccessesPerMinuteModule,
   ]
 })
 export class StatsDashboardModule { }

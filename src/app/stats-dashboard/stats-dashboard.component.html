@@ -5,11 +5,13 @@
     </app-grid-item>
 
     <app-grid-item>
-      <app-training-sessions-calendar [sessions]="sessions"></app-training-sessions-calendar>
+      <mat-card>
+        <app-training-sessions-successes-per-minute [sessions]="sessions"></app-training-sessions-successes-per-minute>
+      </mat-card>
     </app-grid-item>
 
     <app-grid-item>
-      <app-training-sessions-scatter-bar-chart [sessions]="sessions"></app-training-sessions-scatter-bar-chart>
+      <app-training-sessions-calendar [sessions]="sessions"></app-training-sessions-calendar>
     </app-grid-item>
   </app-grid>
 </app-container>

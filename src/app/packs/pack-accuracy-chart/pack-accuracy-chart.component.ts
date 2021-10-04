@@ -18,18 +18,18 @@ export class PackAccuracyChartComponent implements OnInit {
 
   private setOptionsFromSessions(sessions: TrainingSession[]): void {
     this.options = {
-      xAxis: {
-        type: "time",
-        min: (value: any) => value.min - 100,
-        max: (value: any) => value.max + 100,
-      },
-      data: sessions.map(session => this.getDataFromSession(session))
+      series: [
+        {
+          name: "Accuracy",
+          data: sessions.map((session, index) => this.getDataFromSession(session, index))
+        }
+      ]
     }
   }
 
-  private getDataFromSession(session: TrainingSession): any[] {
+  private getDataFromSession(session: TrainingSession, index: number): any[] {
     return session.results
-      ? [session.startTime, session.results.successes / (session.results.successes + session.results.failures)]
-      : [undefined, undefined];
+      ? [index, (session.results.successes / (session.results.successes + session.results.failures)) * 100]
+      : [index, 0];
   }
 }

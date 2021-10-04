@@ -1,19 +1,19 @@
-import { ScatterChartOptions } from "./charts.interfaces";
+import { ChartSeries, ScatterChartOptions } from "./charts.interfaces";
 
 export const getFormattedScatterChartOptions = (options: ScatterChartOptions) => {
   return {
     xAxis: options.xAxis || {},
     yAxis: options.yAxis || {},
-    series: [
-      getFormattedScatterChartSeries(options.data)
-    ]
+    series: options.series.map(seriesData => getFormattedScatterChartSeries(seriesData))
   };
 }
 
-export const getFormattedScatterChartSeries = (data: any[][]) => {
+export const getFormattedScatterChartSeries = (series: ChartSeries) => {
   return {
+      id: series.name,
+      dataGroupId: series.name,
       symbolSize: 10,
-      data: data,
+      data: series.data,
       type: 'scatter'
     }
 }

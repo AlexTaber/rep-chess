@@ -25,6 +25,7 @@
     "@types/lodash": "^4.14.175",
     "bluebird": "^3.7.2",
     "csv-string": "^4.0.1",
+    "date-fns": "^2.24.0",
     "echarts": "^5.2.1",
     "lodash": "^4.17.21",
     "ngx-chess-board": "^2.1.14",

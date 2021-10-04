@@ -28,11 +28,11 @@ export class CalendarComponent implements OnInit {
         range: new Date().getFullYear(),
         cellSize: 15,
       },
-      series: {
+      series: options.series.map(seriesData => ({
         type: 'heatmap',
         coordinateSystem: 'calendar',
-        data: options.data,
-      },
+        data: seriesData.data,
+      }))
     };
   }
 }
