@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
-import { ExerciseAttempt, ExercisesService } from 'src/app/exercises/state';
+import { ExerciseAttempt } from 'src/app/exercises/state';
 import { PacksQuery } from 'src/app/packs/state';
 import { TimeInSeconds, TrainingSession, TrainingSessionsQuery, TrainingSessionsService } from '../state';
 import { TrainingSessionFormQuery } from '../training-session-form/state';
@@ -25,7 +25,6 @@ export class TrainingSessionComponent implements OnInit {
     private sessionsQuery: TrainingSessionsQuery,
     private sessionFormQuery: TrainingSessionFormQuery,
     private packsQuery: PacksQuery,
-    private exercisesService: ExercisesService,
     private router: Router,
   ) { }
 
@@ -55,7 +54,6 @@ export class TrainingSessionComponent implements OnInit {
         targetTime: this.payload.unlimitedMode ? undefined : this.getTimeFromPayload(this.payload)
       },
       attempts: [],
-      time: 0,
     };
   }
 
@@ -69,13 +67,6 @@ export class TrainingSessionComponent implements OnInit {
 
   private setActiveTrainingSession(session: TrainingSession): void {
     this.sessionsService.setActive(session.id);
-    this.checkShuffleExercises();
-  }
-
-  private checkShuffleExercises(): void {
-    if (this.payload.shuffle) {
-      this.exercisesService.shuffle();
-    }
   }
 
   private setResults(): void {

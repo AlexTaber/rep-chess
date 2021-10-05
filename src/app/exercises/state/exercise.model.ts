@@ -36,7 +36,6 @@ export interface ExerciseRatingRange {
 }
 
 export interface ExerciseCollection {
-  time: TimeInSeconds;
   startTime: Date;
   attempts: ExerciseAttempt[];
   results: ExerciseResults;

@@ -7,7 +7,6 @@ export interface TrainingSession extends ExerciseCollection {
   id: ID;
   packId: ID;
   config: TrainingSessionConfig;
-  startTime: Date;
 }
 
 export interface TrainingSessionConfig {

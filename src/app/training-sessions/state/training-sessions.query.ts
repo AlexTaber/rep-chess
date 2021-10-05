@@ -41,7 +41,7 @@ export class TrainingSessionsQuery extends QueryEntity<TrainingSessionsState> {
     return {
       successes: session.attempts.filter(attempt => attempt.status === "pass").length,
       failures: session.attempts.filter(attempt => attempt.status === "fail").length,
-      time: session.attempts.reduce((time, session) => time + session.time, 0),
+      time: session.attempts.reduce((time, attempt) => time + attempt.time, 0),
     }
   }
 }
