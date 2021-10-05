@@ -1,1 +1,9 @@
-<app-exercise (complete)="onComplete($event)"></app-exercise>
+<button mat-raised-button (click)="onComplete()">End Training</button>
+
+<app-exercises-clock
+  *ngIf="config"
+  [config]="{ leftTime: config.targetTime }"
+  (complete)="onComplete()"
+></app-exercises-clock>
+
+<app-exercise #exerciseComponent (complete)="onCompleteExercise($event)"></app-exercise>

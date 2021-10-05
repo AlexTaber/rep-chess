@@ -1,11 +1,12 @@
-<app-container>
+<app-container *ngIf="session$ | async as session">
   <app-grid>
     <app-grid-item>
-      <app-training-session-clock (complete)="onSessionComplete()"></app-training-session-clock>
-
-      <button mat-raised-button (click)="onSessionComplete()">End Session</button>
-
-      <app-train-exercises [exercises]="(pack$ | async)?.exercises || []" (exerciseComplete)="onExerciseComplete($event)"></app-train-exercises>
+      <app-train-exercises
+        [exercises]="(pack$ | async)?.exercises || []"
+        [config]="session.config"
+        (exerciseComplete)="onExerciseComplete($event)"
+        (complete)="onSessionComplete($event)"
+      ></app-train-exercises>
     </app-grid-item>
 
     <app-grid-item>

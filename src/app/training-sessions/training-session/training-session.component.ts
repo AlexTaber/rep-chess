@@ -13,7 +13,7 @@ import { TrainingSessionFormPayload } from '../training-session-form/state/train
   styleUrls: ['./training-session.component.scss']
 })
 export class TrainingSessionComponent implements OnInit {
-  public session$ = this.sessionsQuery.selectActive();
+  public session$ = this.sessionsQuery.active$;
   public pack$ = this.packsQuery.activePack$;
 
   private get payload(): TrainingSessionFormPayload {
@@ -38,8 +38,8 @@ export class TrainingSessionComponent implements OnInit {
     this.setResults();
   }
 
-  public onSessionComplete(): void {
-    this.setResults();
+  public onSessionComplete(attempt: ExerciseAttempt): void {
+    this.onExerciseComplete(attempt);
     this.navigateToResults();
   }
 

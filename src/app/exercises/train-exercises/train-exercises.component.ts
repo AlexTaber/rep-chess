@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { guid } from '@datorama/akita';
-import { Exercise, ExerciseAttempt, ExerciseAttemptStatus, ExercisesService } from '../state';
+import { TrainingSessionConfig } from 'src/app/training-sessions/state';
+import { ExerciseComponent } from '../exercise/exercise.component';
+import { Exercise, ExerciseAttempt, ExercisesService } from '../state';
 
 @Component({
   selector: 'app-train-exercises',
@@ -12,7 +14,12 @@ export class TrainExercisesComponent implements OnInit {
     this.onSetExercises(exercises);
   }
 
+  @Input() config?: TrainingSessionConfig;
+
   @Output() exerciseComplete = new EventEmitter<ExerciseAttempt>();
+  @Output() complete = new EventEmitter<ExerciseAttempt>();
+
+  @ViewChild("exerciseComponent") exerciseComponent?: ExerciseComponent;
 
   constructor(
     private exercisesService: ExercisesService,
@@ -20,9 +27,14 @@ export class TrainExercisesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public onComplete(attempt: ExerciseAttempt): void {
+  public onCompleteExercise(attempt: ExerciseAttempt): void {
     this.exerciseComplete.emit(attempt);
     this.setNextActive();
+  }
+
+  public onComplete(): void {
+    const attempt = this.exerciseComponent?.getAttempt("pending");
+    this.complete.emit(attempt);
   }
 
   private onSetExercises(exercises: Exercise[]): void {

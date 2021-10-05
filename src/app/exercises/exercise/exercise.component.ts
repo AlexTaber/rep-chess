@@ -62,6 +62,18 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     [...Array(remainingTurns)].map((_, index) =>  this.scheduleMove(moves[moveIndex + index], index + 1));
   }
 
+  public getAttempt(status: ExerciseAttemptStatus): ExerciseAttempt {
+    const startTime = this.exerciseQuery.getValue().attemptStartTime;
+    const endTime = new Date();
+    const time = (endTime.getTime() - startTime.getTime()) / 1000;
+    return {
+      id: guid(),
+      exerciseId: this.exercise!.id,
+      status,
+      time,
+    }
+  }
+
   private onSetBoard(board: NgxChessBoardComponent | undefined): void {
     if (board) {
       this.board = board;
@@ -131,14 +143,6 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   }
 
   private emit(status: ExerciseAttemptStatus): void {
-    const startTime = this.exerciseQuery.getValue().attemptStartTime;
-    const endTime = new Date();
-    const time = (endTime.getTime() - startTime.getTime()) / 1000;
-    this.complete.emit({
-      id: guid(),
-      exerciseId: this.exercise!.id,
-      status,
-      time,
-    })
+    this.complete.emit(this.getAttempt(status));
   }
 }
