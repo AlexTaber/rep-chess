@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
 import { Observable } from 'rxjs';
+import { ExerciseResults } from 'src/app/exercises/state';
 import { PacksQuery } from 'src/app/packs/state';
-import { TrainingSessionExercisesQuery } from 'src/app/training-session-exercises/state';
-import { TimeInSeconds, TrainingSession, TrainingSessionResults } from '.';
+import { TimeInSeconds, TrainingSession } from '.';
 import { TrainingSessionsStore, TrainingSessionsState } from './training-sessions.store';
 
 @Injectable({ providedIn: 'root' })
@@ -17,28 +17,31 @@ export class TrainingSessionsQuery extends QueryEntity<TrainingSessionsState> {
   constructor(
     protected store: TrainingSessionsStore,
     private packsQuery: PacksQuery,
-    private sessionExercisesQuery: TrainingSessionExercisesQuery,
   ) {
     super(store);
   }
 
-  public getResults(): TrainingSessionResults | undefined {
+  public getResults(): ExerciseResults | undefined {
     const session = this.getActive() as TrainingSession | undefined;
     return session ? this.getResultsFromSession(session) : undefined;
   }
 
-  private getResultsFromSession(session: TrainingSession): TrainingSessionResults {
+  private getResultsFromSession(session: TrainingSession): ExerciseResults {
     return {
       time: this.getSessionTime(session),
       ...this.getResultsCountsFromSession(session),
-    } as TrainingSessionResults;
+    } as ExerciseResults;
   }
 
   private getSessionTime(session: TrainingSession): TimeInSeconds {
     return Math.ceil((new Date().getTime() - session.startTime.getTime()) / 1000);
   }
 
-  private getResultsCountsFromSession(session: TrainingSession): Partial<TrainingSessionResults> {
-    return this.sessionExercisesQuery.getResultsCountFromSession(session);
+  private getResultsCountsFromSession(session: TrainingSession): Partial<ExerciseResults> {
+    return {
+      successes: session.attempts.filter(attempt => attempt.status === "pass").length,
+      failures: session.attempts.filter(attempt => attempt.status === "fail").length,
+      time: session.attempts.reduce((time, session) => time + session.time, 0),
+    }
   }
 }

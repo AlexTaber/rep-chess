@@ -5,7 +5,7 @@
 
       <button mat-raised-button (click)="onSessionComplete()">End Session</button>
 
-      <app-training-session-exercise (complete)="onExerciseComplete()"></app-training-session-exercise>
+      <app-train-exercises [exercises]="(pack$ | async)?.exercises || []" (exerciseComplete)="onExerciseComplete($event)"></app-train-exercises>
     </app-grid-item>
 
     <app-grid-item>

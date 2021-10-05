@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
-import { Exercise, ExercisesQuery, ExercisesService } from 'src/app/exercises/state';
-import { Pack, PacksQuery } from 'src/app/packs/state';
-import { TrainingSessionExercisesService } from 'src/app/training-session-exercises/state';
+import { ExerciseAttempt, ExercisesService } from 'src/app/exercises/state';
+import { PacksQuery } from 'src/app/packs/state';
 import { TimeInSeconds, TrainingSession, TrainingSessionsQuery, TrainingSessionsService } from '../state';
 import { TrainingSessionFormQuery } from '../training-session-form/state';
 import { TrainingSessionFormPayload } from '../training-session-form/state/training-session-form.store';
@@ -15,27 +14,18 @@ import { TrainingSessionFormPayload } from '../training-session-form/state/train
 })
 export class TrainingSessionComponent implements OnInit {
   public session$ = this.sessionsQuery.selectActive();
+  public pack$ = this.packsQuery.activePack$;
 
   private get payload(): TrainingSessionFormPayload {
     return this.sessionFormQuery.getValue().payload;
   }
 
-  private get firstExercise(): Exercise | undefined {
-    return this.exercisesQuery.getFirst();
-  }
-
-  private get nextExercise(): Exercise | undefined {
-    return this.exercisesQuery.getNext() || this.firstExercise;
-  }
-
   constructor(
     private sessionsService: TrainingSessionsService,
     private sessionsQuery: TrainingSessionsQuery,
-    private sessionExercisesService: TrainingSessionExercisesService,
     private sessionFormQuery: TrainingSessionFormQuery,
     private packsQuery: PacksQuery,
     private exercisesService: ExercisesService,
-    private exercisesQuery: ExercisesQuery,
     private router: Router,
   ) { }
 
@@ -43,9 +33,9 @@ export class TrainingSessionComponent implements OnInit {
     this.createSession();
   }
 
-  public onExerciseComplete(): void {
+  public onExerciseComplete(attempt: ExerciseAttempt): void {
+    this.sessionsService.addAttempt(attempt);
     this.setResults();
-    this.createSessionExerciseFromExercise(this.nextExercise);
   }
 
   public onSessionComplete(): void {
@@ -64,7 +54,7 @@ export class TrainingSessionComponent implements OnInit {
       config: {
         targetTime: this.payload.unlimitedMode ? undefined : this.getTimeFromPayload(this.payload)
       },
-      exercises: [],
+      attempts: [],
       time: 0,
     };
   }
@@ -80,14 +70,6 @@ export class TrainingSessionComponent implements OnInit {
   private setActiveTrainingSession(session: TrainingSession): void {
     this.sessionsService.setActive(session.id);
     this.checkShuffleExercises();
-    this.createSessionExerciseFromExercise(this.firstExercise);
-  }
-
-  private createSessionExerciseFromExercise(exercise: Exercise | undefined): void {
-    this.sessionExercisesService.create({
-      trainingSessionId: this.sessionsQuery.getActiveId(),
-      exerciseId: exercise?.id,
-    }).subscribe(exercise => this.sessionExercisesService.setActive(exercise.id));
   }
 
   private checkShuffleExercises(): void {

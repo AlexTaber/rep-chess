@@ -1,4 +1,6 @@
+import { ID } from "@datorama/akita";
 import { convertCsvStringToExercises } from "src/app/shared/utils/convert-csv-string-to-exercises";
+import { TimeInSeconds } from "src/app/training-sessions/state";
 import { MOCK_CSVS } from "./mock-exercise-csvs";
 
 export interface Exercise<T = ExerciseData> {
@@ -31,6 +33,28 @@ export interface ExerciseFilter {
 export interface ExerciseRatingRange {
   low: number;
   high: number;
+}
+
+export interface ExerciseCollection {
+  time: TimeInSeconds;
+  startTime: Date;
+  attempts: ExerciseAttempt[];
+  results: ExerciseResults;
+}
+
+export interface ExerciseAttempt {
+  id: ID;
+  exerciseId: ID;
+  status: ExerciseAttemptStatus;
+  time: TimeInSeconds;
+}
+
+export type ExerciseAttemptStatus = "pass" | "fail" | "pending";
+
+export interface ExerciseResults {
+  successes: number;
+  failures: number;
+  time: TimeInSeconds;
 }
 
 export const exerciseThemes = [

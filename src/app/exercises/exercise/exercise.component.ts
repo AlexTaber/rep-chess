@@ -1,11 +1,12 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { guid } from '@datorama/akita';
 import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { Subscription } from 'rxjs';
 import { convertNgxMoveToMove } from 'src/app/shared/utils/convert-ngx-move-to-move';
-import { Exercise, ExercisesQuery } from '../state';
+import { Exercise, ExerciseAttempt, ExerciseAttemptStatus, ExercisesQuery } from '../state';
 import { pieceIcons } from './piece-icons';
 import { ExerciseQuery, ExerciseService } from './state';
-import { ExerciseFailEvent, MoveChangeEvent } from './state/exercise.store';
+import { MoveChangeEvent } from './state/exercise.store';
 
 @Component({
   selector: 'app-exercise',
@@ -14,8 +15,7 @@ import { ExerciseFailEvent, MoveChangeEvent } from './state/exercise.store';
 })
 export class ExerciseComponent implements OnInit, OnDestroy {
   @Output() init = new EventEmitter<Exercise>();
-  @Output() pass = new EventEmitter<void>();
-  @Output() fail = new EventEmitter<ExerciseFailEvent>();
+  @Output() complete = new EventEmitter<ExerciseAttempt>();
 
   public exercise$ = this.exercisesQuery.activeExercise$;
   public pieceIcons = pieceIcons;
@@ -54,6 +54,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   }
 
   public onShowSolution(): void {
+    this.exerciseService.setStatus("fail");
     this.exerciseService.setShowingSolution(true);
     const moves = this.exercise?.data.moves || [];
     const moveIndex = this.exerciseQuery.getValue().moveIndex;
@@ -74,6 +75,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   private initializeExercise(): void {
     this.exerciseService.reset();
+    this.exerciseService.setAttemptStartTime(new Date());
     this.setFen();
     this.checkFlipBoard();
     this.scheduleNextMoveOrPass();
@@ -113,22 +115,30 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   private onFailedMove(): void {
     this.board?.undo();
-    this.emitFail();
+    this.exerciseService.setStatus("fail");
   }
 
   private onComplete(): void {
-    this.exerciseQuery.getValue().showingSolution ? this.onSkip() : this.onPass();
+    this.exerciseQuery.getValue().status === "fail" ? this.onFail() : this.onPass();
   }
 
   private onPass(): void {
-    setTimeout(() => this.pass.emit(), this.pauseTime);
+    setTimeout(() => this.emit("pass"), this.pauseTime);
   }
 
-  private onSkip(): void {
-    setTimeout(() => this.emitFail({ shouldSkip: true }), this.pauseTime * 2);
+  private onFail(): void {
+    setTimeout(() => this.emit("fail"), this.pauseTime);
   }
 
-  private emitFail(event: ExerciseFailEvent = { shouldSkip: false }): void {
-    this.fail.emit(event);
+  private emit(status: ExerciseAttemptStatus): void {
+    const startTime = this.exerciseQuery.getValue().attemptStartTime;
+    const endTime = new Date();
+    const time = (endTime.getTime() - startTime.getTime()) / 1000;
+    this.complete.emit({
+      id: guid(),
+      exerciseId: this.exercise!.id,
+      status,
+      time,
+    })
   }
 }

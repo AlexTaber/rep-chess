@@ -28,6 +28,10 @@ export class ExercisesService {
     this.exercisesStore.setActive(id);
   }
 
+  public setNextActive(): void {
+    this.exercisesStore.setActive({ next: true });
+  }
+
   public shuffle(): void {
     this.exercisesStore.set(shuffle(this.exercisesQuery.getAll()));
   }

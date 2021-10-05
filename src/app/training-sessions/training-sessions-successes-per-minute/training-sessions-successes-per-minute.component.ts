@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ID } from '@datorama/akita';
-import { Pack, PacksQuery } from 'src/app/packs/state';
+import { ExerciseResults } from 'src/app/exercises/state';
+import { PacksQuery } from 'src/app/packs/state';
 import { ScatterChartOptions } from 'src/app/ui/charts/charts.interfaces';
-import { TrainingSession, TrainingSessionResults } from '../state';
+import { TrainingSession } from '../state';
 
 @Component({
   selector: 'app-training-sessions-successes-per-minute',
@@ -49,7 +50,7 @@ export class TrainingSessionsSuccessesPerMinuteComponent implements OnInit {
       : [undefined, undefined];
   }
 
-  private getSuccessesPerMinute(results: TrainingSessionResults): number {
+  private getSuccessesPerMinute(results: ExerciseResults): number {
     return (results.successes / results.time) * 60
   }
 }
