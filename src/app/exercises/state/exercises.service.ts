@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ID } from '@datorama/akita';
-import { shuffle } from 'lodash';
 import { Observable, of } from 'rxjs';
 import { MockedExercisesRepo } from 'src/app/shared/mock-repos/mocked-exercises.repository';
-import { Exercise, ExerciseFilter, ExercisesQuery } from '.';
+import { Exercise, ExerciseFilter } from '.';
 import { ExercisesStore } from './exercises.store';
 
 @Injectable({ providedIn: 'root' })
 export class ExercisesService {
   constructor(
     private exercisesStore: ExercisesStore,
-    private exercisesQuery: ExercisesQuery,
     private repo: MockedExercisesRepo,
   ) {}
 
@@ -30,9 +28,5 @@ export class ExercisesService {
 
   public setNextActive(): void {
     this.exercisesStore.setActive({ next: true });
-  }
-
-  public shuffle(): void {
-    this.exercisesStore.set(shuffle(this.exercisesQuery.getAll()));
   }
 }

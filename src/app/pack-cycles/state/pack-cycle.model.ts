@@ -1,9 +1,14 @@
 import { guid, ID } from '@datorama/akita';
-import { ExerciseCollection } from 'src/app/exercises/state';
+import { ExerciseCollection, ExerciseResults } from 'src/app/exercises/state';
 
 export interface PackCycle extends ExerciseCollection {
   id: ID;
   packId: ID;
+  results: PackCycleResults;
+}
+
+export interface PackCycleResults extends ExerciseResults {
+  complete: boolean;
 }
 
 export function createPackCycle(packId: ID) {
@@ -16,6 +21,7 @@ export function createPackCycle(packId: ID) {
       successes: 0,
       failures: 0,
       time: 0,
+      complete: false,
     },
   } as PackCycle;
 }

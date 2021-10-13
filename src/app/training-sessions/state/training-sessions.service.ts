@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { arrayAdd, arrayUpdate, guid, ID } from '@datorama/akita';
+import { arrayAdd, guid, ID } from '@datorama/akita';
 import { Observable, of } from 'rxjs';
-import { ExerciseAttempt, ExerciseAttemptStatus, ExerciseResults } from 'src/app/exercises/state';
+import { ExerciseAttempt, ExerciseResults } from 'src/app/exercises/state';
 import { TrainingSession, TrainingSessionsQuery } from '.';
 import { TrainingSessionsStore } from './training-sessions.store';
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { guid, ID } from '@datorama/akita';
+import { shuffle } from 'lodash';
 import { MockedExercisesRepo } from 'src/app/shared/mock-repos/mocked-exercises.repository';
 import { packSubscriptionsRepo } from 'src/app/shared/mock-repos/mocked-pack-subscriptions.repository';
-import { MOCK_PACKS } from '.';
+import { MOCK_PACKS, PacksQuery } from '.';
 import { PacksFormPayload } from '../packs-form/state/packs-form.store';
 import { PacksStore } from './packs.store';
 
@@ -11,6 +12,7 @@ export class PacksService {
 
   constructor(
     private packsStore: PacksStore,
+    private packsQuery: PacksQuery,
     private repo: MockedExercisesRepo,
   ) {}
 
@@ -47,5 +49,10 @@ export class PacksService {
   public unsubscribe(id: ID): void {
     this.packsStore.update(id, { subscribed: false });
     packSubscriptionsRepo.remove(id);
+  }
+
+  public shuffle(): void {
+    const exercises = this.packsQuery.getActivePack()?.exercises || [];
+    this.packsStore.updateActive({ exercises: shuffle(exercises) });
   }
 }
