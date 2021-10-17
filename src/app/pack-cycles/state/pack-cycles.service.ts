@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { arrayAdd, ID } from '@datorama/akita';
+import { arrayAdd, arrayUpdate, ID } from '@datorama/akita';
 import { Observable, of } from 'rxjs';
 import { ExerciseAttempt } from 'src/app/exercises/state';
 import { createPackCycle, PackCycle, PackCycleResults, PackCyclesQuery } from '.';
@@ -27,12 +27,30 @@ export class PackCyclesService {
   }
 
   public addAttempt(attempt: ExerciseAttempt): void {
+    const existingAttempt = this.cylcesQuery.getActiveCycle()?.attempts.find(checkedAttempt => (
+      checkedAttempt.status === "pending" && checkedAttempt.exerciseId === attempt.exerciseId
+    ));
+
+    existingAttempt ? this.updateExistingAttempt(existingAttempt, attempt) : this.addNewAttempt(attempt);
+  }
+
+  public setResults(results: PackCycleResults | undefined): void {
+    this.packCyclesStore.updateActive({ results });
+  }
+
+  private addNewAttempt(attempt: ExerciseAttempt): void {
     const currentAttempts = this.active?.attempts || [];
     const attempts = arrayAdd(currentAttempts, attempt);
     this.packCyclesStore.updateActive({ attempts });
   }
 
-  public setResults(results: PackCycleResults | undefined): void {
-    this.packCyclesStore.updateActive({ results });
+  private updateExistingAttempt(existingAttempt: ExerciseAttempt, newAttempt: ExerciseAttempt): void {
+    const attempts = arrayUpdate(this.cylcesQuery.getActiveCycle()?.attempts || [], existingAttempt.id, {
+      id: newAttempt.id,
+      time: existingAttempt.time + newAttempt.time,
+      status: newAttempt.status,
+    });
+
+    this.packCyclesStore.updateActive({ attempts });
   }
 }

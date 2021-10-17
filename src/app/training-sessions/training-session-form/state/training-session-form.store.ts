@@ -7,7 +7,6 @@ export interface TrainingSessionFormState {
 
 export interface TrainingSessionFormPayload {
   unlimitedMode: boolean;
-  shuffle: boolean;
   minutes: number;
   seconds: number;
 }
@@ -16,7 +15,6 @@ export function createInitialState(): TrainingSessionFormState {
   return {
     payload: {
       unlimitedMode: false,
-      shuffle: false,
       minutes: 20,
       seconds: 0,
     }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { QueryEntity } from '@datorama/akita';
+import { ID, QueryEntity } from '@datorama/akita';
+import { Observable } from 'rxjs';
 import { getResultsFromExerciseCollection } from 'src/app/exercises/state/exercises.utils';
 import { PacksQuery } from 'src/app/packs/state';
 import { PackCycle, PackCycleResults } from '.';
@@ -16,8 +17,18 @@ export class PackCyclesQuery extends QueryEntity<PackCyclesState> {
   }
 
   public getResults(): PackCycleResults | undefined {
-    const cycle = this.getActive() as PackCycle | undefined;
+    const cycle = this.getActiveCycle();
     return cycle ? this.getResultsFromCycle(cycle) : undefined;
+  }
+
+  public getActiveCycle(): PackCycle | undefined {
+    return this.getActive() as PackCycle | undefined;
+  }
+
+  public selectByPackId(packId: ID): Observable<PackCycle[]> {
+    return this.selectAll({
+      filterBy: cycle => cycle.packId === packId
+    });
   }
 
   private getResultsFromCycle(cycle: PackCycle): PackCycleResults {

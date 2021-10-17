@@ -23,4 +23,8 @@ export class ExercisesQuery extends QueryEntity<ExercisesState> {
   public getFirst(): Exercise | undefined {
     return this.getAll()[0];
   }
+
+  public getActiveExercise(): Exercise | undefined {
+    return this.getActive() as Exercise | undefined;
+  }
 }

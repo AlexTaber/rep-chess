@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
-import { ExerciseAttempt } from 'src/app/exercises/state';
-import { PackCyclesQuery, PackCyclesService } from 'src/app/pack-cycles/state';
+import { ExerciseAttempt, ExercisesService } from 'src/app/exercises/state';
+import { PackCycle, PackCyclesQuery, PackCyclesService } from 'src/app/pack-cycles/state';
 import { PacksQuery, PacksService } from 'src/app/packs/state';
 import { TimeInSeconds, TrainingSession, TrainingSessionsQuery, TrainingSessionsService } from '../state';
 import { TrainingSessionFormQuery } from '../training-session-form/state';
@@ -29,6 +29,7 @@ export class TrainingSessionComponent implements OnInit {
     private cyclesQuery: PackCyclesQuery,
     private packsService: PacksService,
     private packsQuery: PacksQuery,
+    private exercisesService: ExercisesService,
     private router: Router,
   ) { }
 
@@ -88,12 +89,20 @@ export class TrainingSessionComponent implements OnInit {
   private setActiveCycle(): void {
     const activePackId = this.packsQuery.getActiveId();
     const activeCycle = this.cyclesQuery.getAll().find(cycle => cycle.packId === activePackId);
-    activeCycle ? this.cyclesService.setActive(activeCycle.id) : this.createCycle();
+    activeCycle ? this.loadCycle(activeCycle) : this.createCycle();
   }
 
   private createCycle(): void {
     this.cyclesService.create(this.packsQuery.getActiveId())
       .subscribe(cycle => this.cyclesService.setActive(cycle.id));
+  }
+
+  private loadCycle(cycle: PackCycle): void {
+    this.cyclesService.setActive(cycle.id);
+    const lastAttempt = cycle.attempts.find(attempt => attempt.status === "pending");
+    if (lastAttempt) {
+      this.exercisesService.setActive(lastAttempt.exerciseId);
+    }
   }
 
   private checkStartNewCycle(attempt: ExerciseAttempt): void {
