@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ID } from '@datorama/akita';
-import { ExerciseResults } from 'src/app/exercises/state';
+import { ExerciseCollection, ExerciseResults } from 'src/app/exercises/state';
 import { PacksQuery } from 'src/app/packs/state';
 import { ScatterChartOptions } from 'src/app/ui/charts/charts.interfaces';
-import { TrainingSession } from '../state';
 
 @Component({
   selector: 'app-training-sessions-successes-per-minute',
@@ -11,7 +10,7 @@ import { TrainingSession } from '../state';
   styleUrls: ['./training-sessions-successes-per-minute.component.scss']
 })
 export class TrainingSessionsSuccessesPerMinuteComponent implements OnInit {
-  @Input() set sessions(sessions: TrainingSession[]) {
+  @Input() set sessions(sessions: ExerciseCollection[]) {
     this.setOptionsFromSessions(sessions);
   }
 
@@ -23,7 +22,7 @@ export class TrainingSessionsSuccessesPerMinuteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private setOptionsFromSessions(sessions: TrainingSession[]): void {
+  private setOptionsFromSessions(sessions: ExerciseCollection[]): void {
     const uniquePackIds = this.getUniquePackIds(sessions);
     this.options = {
       series: uniquePackIds.map(id => ({
@@ -33,17 +32,17 @@ export class TrainingSessionsSuccessesPerMinuteComponent implements OnInit {
     }
   }
 
-  private getDataFromPackId(packId: ID, sessions: TrainingSession[]): any[][] {
+  private getDataFromPackId(packId: ID, sessions: ExerciseCollection[]): any[][] {
     const packSessions = sessions.filter(session => session.packId === packId);
     return packSessions.map(session => this.getDataFromSession(session, sessions));
   }
 
-  private getUniquePackIds(sessions: TrainingSession[]): ID[] {
+  private getUniquePackIds(sessions: ExerciseCollection[]): ID[] {
     let ids = sessions.map(session => session.packId);
     return [...new Set(ids)];
   }
 
-  private getDataFromSession(session: TrainingSession, allSessions: TrainingSession[]): any[] {
+  private getDataFromSession(session: ExerciseCollection, allSessions: ExerciseCollection[]): any[] {
     const index = allSessions.findIndex(s => s.id === session.id);
     return session.results
       ? [index, this.getSuccessesPerMinute(session.results)]

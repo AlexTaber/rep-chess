@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
 import { ExerciseAttempt, ExercisesService } from 'src/app/exercises/state';
@@ -13,7 +13,7 @@ import { TrainingSessionFormPayload } from '../training-session-form/state/train
   templateUrl: './training-session.component.html',
   styleUrls: ['./training-session.component.scss']
 })
-export class TrainingSessionComponent implements OnInit {
+export class TrainingSessionComponent implements OnInit, AfterViewInit {
   public session$ = this.sessionsQuery.active$;
   public pack$ = this.packsQuery.activePack$;
 
@@ -35,6 +35,9 @@ export class TrainingSessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.createSession();
+  }
+
+  ngAfterViewInit(): void {
     this.setActiveCycle();
   }
 

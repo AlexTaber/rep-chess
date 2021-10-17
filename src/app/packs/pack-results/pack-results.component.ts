@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PackCyclesQuery } from 'src/app/pack-cycles/state';
 import { TrainingSessionsQuery } from 'src/app/training-sessions/state';
 
 @Component({
@@ -8,9 +9,11 @@ import { TrainingSessionsQuery } from 'src/app/training-sessions/state';
 })
 export class PackResultsComponent implements OnInit {
   public sessions$ = this.sessionsQuery.activePackSessions$;
+  public cycles$ = this.cyclesQuery.activePackCycles$
 
   constructor(
     private sessionsQuery: TrainingSessionsQuery,
+    private cyclesQuery: PackCyclesQuery,
   ) { }
 
   ngOnInit(): void {}

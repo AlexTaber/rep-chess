@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild
 import { guid } from '@datorama/akita';
 import { TrainingSessionConfig } from 'src/app/training-sessions/state';
 import { ExerciseComponent } from '../exercise/exercise.component';
-import { Exercise, ExerciseAttempt, ExercisesQuery, ExercisesService } from '../state';
+import { Exercise, ExerciseAttempt, ExercisesService } from '../state';
 
 @Component({
   selector: 'app-train-exercises',
@@ -28,7 +28,6 @@ export class TrainExercisesComponent implements OnInit {
 
   constructor(
     private exercisesService: ExercisesService,
-    private exercisesQuery: ExercisesQuery,
   ) { }
 
   ngOnInit(): void {}
@@ -45,7 +44,7 @@ export class TrainExercisesComponent implements OnInit {
 
   private onSetExercises(exercises: Exercise[]): void {
     this.exercisesService.set(exercises);
-    const active = this.exercisesQuery.getActiveExercise() || exercises[0];
+    const active = exercises[0];
     this.exercisesService.setActive(active?.id);
   }
 

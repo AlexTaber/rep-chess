@@ -4,8 +4,6 @@ import { ExerciseCollection } from 'src/app/exercises/state';
 export type TimeInSeconds = number;
 
 export interface TrainingSession extends ExerciseCollection {
-  id: ID;
-  packId: ID;
   config: TrainingSessionConfig;
 }
 

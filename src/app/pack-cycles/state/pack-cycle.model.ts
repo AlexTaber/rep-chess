@@ -2,8 +2,6 @@ import { guid, ID } from '@datorama/akita';
 import { ExerciseCollection, ExerciseResults } from 'src/app/exercises/state';
 
 export interface PackCycle extends ExerciseCollection {
-  id: ID;
-  packId: ID;
   results: PackCycleResults;
 }
 

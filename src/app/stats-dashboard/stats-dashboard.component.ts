@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PackCyclesQuery } from '../pack-cycles/state';
 import { TrainingSessionsQuery } from '../training-sessions/state';
 
 @Component({
@@ -7,10 +8,10 @@ import { TrainingSessionsQuery } from '../training-sessions/state';
   styleUrls: ['./stats-dashboard.component.scss']
 })
 export class StatsDashboardComponent implements OnInit {
-  public sessions$ = this.sessionsQuery.all$;
+  public cycles$ = this.cyclesQuery.all$;
 
   constructor(
-    private sessionsQuery: TrainingSessionsQuery,
+    private cyclesQuery: PackCyclesQuery,
   ) { }
 
   ngOnInit(): void {

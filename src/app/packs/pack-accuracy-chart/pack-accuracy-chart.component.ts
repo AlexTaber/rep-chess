@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TrainingSession } from 'src/app/training-sessions/state';
+import { ExerciseCollection } from 'src/app/exercises/state';
 import { ScatterChartOptions } from 'src/app/ui/charts/charts.interfaces';
 
 @Component({
@@ -8,7 +8,7 @@ import { ScatterChartOptions } from 'src/app/ui/charts/charts.interfaces';
   styleUrls: ['./pack-accuracy-chart.component.scss']
 })
 export class PackAccuracyChartComponent implements OnInit {
-  @Input() set sessions(sessions: TrainingSession[]) {
+  @Input() set sessions(sessions: ExerciseCollection[]) {
     this.setOptionsFromSessions(sessions);
   }
 
@@ -16,7 +16,7 @@ export class PackAccuracyChartComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private setOptionsFromSessions(sessions: TrainingSession[]): void {
+  private setOptionsFromSessions(sessions: ExerciseCollection[]): void {
     this.options = {
       series: [
         {
@@ -27,7 +27,7 @@ export class PackAccuracyChartComponent implements OnInit {
     }
   }
 
-  private getDataFromSession(session: TrainingSession, index: number): any[] {
+  private getDataFromSession(session: ExerciseCollection, index: number): any[] {
     return session.results
       ? [index, (session.results.successes / (session.results.successes + session.results.failures)) * 100]
       : [index, 0];

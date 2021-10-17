@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { addSeconds, format } from 'date-fns';
-import { TimeInSeconds, TrainingSession } from '../state';
+import { ExerciseCollection } from 'src/app/exercises/state';
+import { TimeInSeconds } from '../state';
 
 interface QuickStats {
   sessionCount: number;
@@ -15,7 +16,7 @@ interface QuickStats {
   styleUrls: ['./training-sessions-quick-stats.component.scss']
 })
 export class TrainingSessionsQuickStatsComponent implements OnInit {
-  @Input() set sessions(sessions: TrainingSession[]) {
+  @Input() set sessions(sessions: ExerciseCollection[]) {
     this.setStatsFromSessions(sessions);
   };
 
@@ -25,7 +26,7 @@ export class TrainingSessionsQuickStatsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private setStatsFromSessions(sessions: TrainingSession[]): void {
+  private setStatsFromSessions(sessions: ExerciseCollection[]): void {
     this.stats = {
       sessionCount: sessions.length,
       trainingTime: this.formattedTime(sessions.reduce((time, session) => time + (session.results?.time || 0), 0) as TimeInSeconds),
