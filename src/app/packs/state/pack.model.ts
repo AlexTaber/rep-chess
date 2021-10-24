@@ -25,6 +25,7 @@ export const MOCK_PACKS: Pack[] = [
         low: 800,
         high: 1000,
       },
+      limit: 100,
     }),
     subscribed: false,
     data: {
@@ -44,7 +45,8 @@ export const MOCK_PACKS: Pack[] = [
       ratingRange: {
         low: 1500,
         high: 2100,
-      }
+      },
+      limit: 100,
     }),
     subscribed: false,
     data: {

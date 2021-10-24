@@ -6,6 +6,7 @@ import { PackCardComponent } from './pack-card.component';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { TogglePackSubscriptionModule } from '../toggle-pack-subscription/toggle-pack-subscription.module';
+import { GridModule } from 'src/app/ui/grid/grid.module';
 
 
 
@@ -18,6 +19,7 @@ import { TogglePackSubscriptionModule } from '../toggle-pack-subscription/toggle
     MatCardModule,
     MatButtonModule,
     MatDividerModule,
+    GridModule,
     RouterModule,
     TogglePackSubscriptionModule,
   ],

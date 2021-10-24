@@ -9,8 +9,13 @@ import { PackCyclesStore, PackCyclesState } from './pack-cycles.store';
 @Injectable({ providedIn: 'root' })
 export class PackCyclesQuery extends QueryEntity<PackCyclesState> {
   public all$ = this.selectAll();
-  public activePackCycles$ = this.selectAll({
-    filterBy: cycle => cycle.packId === this.packsQuery.getActiveId()
+
+  public activeCompleteCycles$ = this.selectAll({
+    filterBy: cycle => cycle.packId === this.packsQuery.getActiveId() && cycle.results.complete
+  });
+
+  public completedCycles$ = this.selectAll({
+    filterBy: cycle => cycle.results.complete
   });
 
 
@@ -30,10 +35,18 @@ export class PackCyclesQuery extends QueryEntity<PackCyclesState> {
     return this.getActive() as PackCycle | undefined;
   }
 
-  public selectByPackId(packId: ID): Observable<PackCycle[]> {
+  public selectCompletedByPackId(packId: ID): Observable<PackCycle[]> {
     return this.selectAll({
-      filterBy: cycle => cycle.packId === packId
+      filterBy: cycle => cycle.packId === packId && cycle.results.complete,
     });
+  }
+
+  public selectOngoingByPackId(packId: ID): Observable<PackCycle | undefined> {
+    return this.selectEntity((cycle: PackCycle) => cycle.packId === packId && !cycle.results.complete);
+  }
+
+  public getOngoingCycle(packId: ID): PackCycle | undefined {
+    return this.getAll().find(cycle => cycle.packId === packId && !cycle.results.complete);
   }
 
   private getResultsFromCycle(cycle: PackCycle): PackCycleResults {

@@ -44,7 +44,7 @@ export class TrainingSessionComponent implements OnInit, AfterViewInit {
   public onExerciseComplete(attempt: ExerciseAttempt): void {
     this.addAttempt(attempt);
     this.setResults();
-    this.checkStartNewCycle(attempt);
+    this.checkStartNewCycle();
   }
 
   public onSessionComplete(attempt: ExerciseAttempt): void {
@@ -91,8 +91,8 @@ export class TrainingSessionComponent implements OnInit, AfterViewInit {
 
   private setActiveCycle(): void {
     const activePackId = this.packsQuery.getActiveId();
-    const activeCycle = this.cyclesQuery.getAll().find(cycle => cycle.packId === activePackId);
-    activeCycle ? this.loadCycle(activeCycle) : this.createCycle();
+    const ongoingCycle = this.cyclesQuery.getOngoingCycle(activePackId);
+    ongoingCycle ? this.loadCycle(ongoingCycle) : this.createCycle();
   }
 
   private createCycle(): void {
@@ -108,10 +108,10 @@ export class TrainingSessionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private checkStartNewCycle(attempt: ExerciseAttempt): void {
-    const exercises = this.packsQuery.getActivePack()?.exercises;
-    const lastExercise = exercises?.[exercises?.length - 1];
-    if (attempt.exerciseId === lastExercise?.id) {
+  private checkStartNewCycle(): void {
+    const exercises = this.packsQuery.getActivePack()?.exercises || [];
+    const attempts = this.cyclesQuery.getActiveCycle()?.attempts || [];
+    if (attempts.length >= exercises.length) {
       this.packsService.shuffle();
       this.createCycle();
     }

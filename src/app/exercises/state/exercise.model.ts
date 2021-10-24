@@ -60,241 +60,241 @@ export interface ExerciseResults {
 
 export const exerciseThemes = [
   {
-    key: "advancedPawn",
-    name: "Advanced pawn"
+    "key": "advancedPawn",
+    "name": "Advanced pawn"
   },
   {
-    key: "advantage",
-    name: "Advantage"
+    "key": "advantage",
+    "name": "Advantage"
   },
   {
-    key: "anastasiaMate",
-    name: "Anastasia's mate"
+    "key": "anastasiaMate",
+    "name": "Anastasia's mate"
   },
   {
-    key: "arabianMate",
-    name: "Arabian mate"
+    "key": "arabianMate",
+    "name": "Arabian mate"
   },
   {
-    key: "attackingF2F7",
-    name: "Attacking f2 or f7"
+    "key": "attackingF2F7",
+    "name": "Attacking f2 or f7"
   },
   {
-    key: "attraction",
-    name: "Attraction"
+    "key": "attraction",
+    "name": "Attraction"
   },
   {
-    key: "backRankMate",
-    name: "Back rank mate"
+    "key": "backRankMate",
+    "name": "Back rank mate"
   },
   {
-    key: "bishopEndgame",
-    name: "Bishop endgame"
+    "key": "bishopEndgame",
+    "name": "Bishop endgame"
   },
   {
-    key: "bodenMate",
-    name: "Boden's mate"
+    "key": "bodenMate",
+    "name": "Boden's mate"
   },
   {
-    key: "castling",
-    name: "Castling"
+    "key": "capturingDefender",
+    "name": "Capture the defender"
   },
   {
-    key: "capturingDefender",
-    name: "Capture the defender"
+    "key": "castling",
+    "name": "Castling"
   },
   {
-    key: "crushing",
-    name: "Crushing"
+    "key": "mate",
+    "name": "Checkmate"
   },
   {
-    key: "doubleBishopMate",
-    name: "Double bishop mate"
+    "key": "clearance",
+    "name": "Clearance"
   },
   {
-    key: "dovetailMate",
-    name: "Dovetail mate"
+    "key": "crushing",
+    "name": "Crushing"
   },
   {
-    key: "equality",
-    name: "Equality"
+    "key": "defensiveMove",
+    "name": "Defensive move"
   },
   {
-    key: "kingsideAttack",
-    name: "Kingside attack"
+    "key": "deflection",
+    "name": "Deflection"
   },
   {
-    key: "clearance",
-    name: "Clearance"
+    "key": "discoveredAttack",
+    "name": "Discovered attack"
   },
   {
-    key: "defensiveMove",
-    name: "Defensive move"
+    "key": "doubleBishopMate",
+    "name": "Double bishop mate"
   },
   {
-    key: "deflection",
-    name: "Deflection"
+    "key": "doubleCheck",
+    "name": "Double check"
   },
   {
-    key: "discoveredAttack",
-    name: "Discovered attack"
+    "key": "dovetailMate",
+    "name": "Dovetail mate"
   },
   {
-    key: "doubleCheck",
-    name: "Double check"
+    "key": "endgame",
+    "name": "Endgame"
   },
   {
-    key: "endgame",
-    name: "Endgame"
+    "key": "equality",
+    "name": "Equality"
   },
   {
-    key: "exposedKing",
-    name: "Exposed king"
+    "key": "exposedKing",
+    "name": "Exposed king"
   },
   {
-    key: "fork",
-    name: "Fork"
+    "key": "fork",
+    "name": "Fork"
   },
   {
-    key: "hangingPiece",
-    name: "Hanging piece"
+    "key": "hangingPiece",
+    "name": "Hanging piece"
   },
   {
-    key: "hookMate",
-    name: "Hook mate"
+    "key": "hookMate",
+    "name": "Hook mate"
   },
   {
-    key: "interference",
-    name: "Interference"
+    "key": "interference",
+    "name": "Interference"
   },
   {
-    key: "intermezzo",
-    name: "Intermezzo"
+    "key": "intermezzo",
+    "name": "Intermezzo"
   },
   {
-    key: "knightEndgame",
-    name: "Knight endgame"
+    "key": "kingsideAttack",
+    "name": "Kingside attack"
   },
   {
-    key: "long",
-    name: "Long puzzle"
+    "key": "knightEndgame",
+    "name": "Knight endgame"
   },
   {
-    key: "master",
-    name: "Master games"
+    "key": "long",
+    "name": "Long puzzle"
   },
   {
-    key: "masterVsMaster",
-    name: "Master vs Master games"
+    "key": "master",
+    "name": "Master games"
   },
   {
-    key: "mate",
-    name: "Checkmate"
+    "key": "masterVsMaster",
+    "name": "Master vs Master games"
   },
   {
-    key: "mateIn1",
-    name: "Mate in 1"
+    "key": "mateIn1",
+    "name": "Mate in 1"
   },
   {
-    key: "mateIn2",
-    name: "Mate in 2"
+    "key": "mateIn2",
+    "name": "Mate in 2"
   },
   {
-    key: "mateIn3",
-    name: "Mate in 3"
+    "key": "mateIn3",
+    "name": "Mate in 3"
   },
   {
-    key: "mateIn4",
-    name: "Mate in 4"
+    "key": "mateIn4",
+    "name": "Mate in 4"
   },
   {
-    key: "mateIn5",
-    name: "Mate in 5 or more"
+    "key": "mateIn5",
+    "name": "Mate in 5 or more"
   },
   {
-    key: "middlegame",
-    name: "Middlegame"
+    "key": "middlegame",
+    "name": "Middlegame"
   },
   {
-    key: "oneMove",
-    name: "One-move puzzle"
+    "key": "oneMove",
+    "name": "One-move puzzle"
   },
   {
-    key: "opening",
-    name: "Opening"
+    "key": "opening",
+    "name": "Opening"
   },
   {
-    key: "pawnEndgame",
-    name: "Pawn endgame"
+    "key": "pawnEndgame",
+    "name": "Pawn endgame"
   },
   {
-    key: "pin",
-    name: "Pin"
+    "key": "pin",
+    "name": "Pin"
   },
   {
-    key: "promotion",
-    name: "Promotion"
+    "key": "promotion",
+    "name": "Promotion"
   },
   {
-    key: "queenEndgame",
-    name: "Queen endgame"
+    "key": "queenRookEndgame",
+    "name": "Queen and Rook"
   },
   {
-    key: "queenRookEndgame",
-    name: "Queen and Rook"
+    "key": "queenEndgame",
+    "name": "Queen endgame"
   },
   {
-    key: "queensideAttack",
-    name: "Queenside attack"
+    "key": "queensideAttack",
+    "name": "Queenside attack"
   },
   {
-    key: "quietMove",
-    name: "Quiet move"
+    "key": "quietMove",
+    "name": "Quiet move"
   },
   {
-    key: "rookEndgame",
-    name: "Rook endgame"
+    "key": "rookEndgame",
+    "name": "Rook endgame"
   },
   {
-    key: "sacrifice",
-    name: "Sacrifice"
+    "key": "sacrifice",
+    "name": "Sacrifice"
   },
   {
-    key: "short",
-    name: "Short puzzle"
+    "key": "short",
+    "name": "Short puzzle"
   },
   {
-    key: "skewer",
-    name: "Skewer"
+    "key": "skewer",
+    "name": "Skewer"
   },
   {
-    key: "smotheredMate",
-    name: "Smothered mate"
+    "key": "smotheredMate",
+    "name": "Smothered mate"
   },
   {
-    key: "superGM",
-    name: "Super GM games"
+    "key": "superGM",
+    "name": "Super GM games"
   },
   {
-    key: "trappedPiece",
-    name: "Trapped piece"
+    "key": "trappedPiece",
+    "name": "Trapped piece"
   },
   {
-    key: "underPromotion",
-    name: "Underpromotion"
+    "key": "underPromotion",
+    "name": "Underpromotion"
   },
   {
-    key: "veryLong",
-    name: "Very long puzzle"
+    "key": "veryLong",
+    "name": "Very long puzzle"
   },
   {
-    key: "xRayAttack",
-    name: "X-Ray attack"
+    "key": "xRayAttack",
+    "name": "X-Ray attack"
   },
   {
-    key: "zugzwang",
-    name: "Zugzwang"
-  },
+    "key": "zugzwang",
+    "name": "Zugzwang"
+  }
 ] as const;
 
 export type ExerciseTheme = typeof exerciseThemes[number]["key"];

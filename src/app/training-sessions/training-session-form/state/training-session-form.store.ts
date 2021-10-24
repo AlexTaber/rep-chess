@@ -14,7 +14,7 @@ export interface TrainingSessionFormPayload {
 export function createInitialState(): TrainingSessionFormState {
   return {
     payload: {
-      unlimitedMode: false,
+      unlimitedMode: true,
       minutes: 20,
       seconds: 0,
     }
