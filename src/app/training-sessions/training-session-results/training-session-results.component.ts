@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TrainingSessionsQuery } from '../state';
 
 @Component({
@@ -7,6 +7,8 @@ import { TrainingSessionsQuery } from '../state';
   styleUrls: ['./training-session-results.component.scss']
 })
 export class TrainingSessionResultsComponent implements OnInit {
+  @Input() columns = 3;
+
   public session$ = this.sessionsQuery.active$;
 
   constructor(

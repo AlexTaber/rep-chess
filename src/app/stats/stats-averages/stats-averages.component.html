@@ -1,0 +1,19 @@
+<app-grid [columns]="3">
+  <mat-card *ngIf="stats">
+    <mat-card-content>
+      <h2>{{ stats.sessionCount }} {{ name }}</h2>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="stats">
+    <mat-card-content>
+      <h2>Average Time: {{ stats.averageTime | formatTime }}</h2>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="stats">
+    <mat-card-content>
+      <h2>Accuracy: {{ stats.averageAccuracy }}</h2>
+    </mat-card-content>
+  </mat-card>
+</app-grid>

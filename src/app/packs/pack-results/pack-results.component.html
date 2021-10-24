@@ -1,23 +1,23 @@
 <ng-container *ngIf="cycles$ | async as cycles">
   <app-grid [columns]="2">
+    <app-grid-item [colSpan]="2">
+      <app-stats-averages [sessions]="cycles" name="Completed Cycles"></app-stats-averages>
+    </app-grid-item>
+
     <app-grid-item>
       <mat-card>
-        <app-training-sessions-successes-per-minute [sessions]="cycles"></app-training-sessions-successes-per-minute>
+        <app-stats-successes-per-minute [sessions]="cycles"></app-stats-successes-per-minute>
       </mat-card>
     </app-grid-item>
 
     <app-grid-item>
       <mat-card>
-        <app-pack-accuracy-chart [sessions]="cycles"></app-pack-accuracy-chart>
+        <app-stats-accuracy [sessions]="cycles"></app-stats-accuracy>
       </mat-card>
     </app-grid-item>
 
     <app-grid-item [colSpan]="2">
-      <app-training-sessions-quick-stats [sessions]="cycles"></app-training-sessions-quick-stats>
-    </app-grid-item>
-
-    <app-grid-item [colSpan]="2">
-      <app-training-sessions-calendar [sessions]="(sessions$ | async) || []"></app-training-sessions-calendar>
+      <app-stats-calendar [sessions]="(sessions$ | async) || []"></app-stats-calendar>
     </app-grid-item>
   </app-grid>
 </ng-container>

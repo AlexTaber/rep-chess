@@ -5,11 +5,11 @@ import { PacksQuery } from 'src/app/packs/state';
 import { ScatterChartOptions } from 'src/app/ui/charts/charts.interfaces';
 
 @Component({
-  selector: 'app-training-sessions-successes-per-minute',
-  templateUrl: './training-sessions-successes-per-minute.component.html',
-  styleUrls: ['./training-sessions-successes-per-minute.component.scss']
+  selector: 'app-stats-successes-per-minute',
+  templateUrl: './stats-successes-per-minute.component.html',
+  styleUrls: ['./stats-successes-per-minute.component.scss']
 })
-export class TrainingSessionsSuccessesPerMinuteComponent implements OnInit {
+export class StatusSuccessesPerMinuteComponent implements OnInit {
   @Input() set sessions(sessions: ExerciseCollection[]) {
     this.setOptionsFromSessions(sessions);
   }

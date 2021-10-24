@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TrainingSessionsCalendarComponent } from './training-sessions-calendar.component';
+import { StatsCalendarComponent } from './stats-calendar.component';
 import { CalendarModule } from 'src/app/ui/charts/calendar/calendar.module';
 import { MatCardModule } from '@angular/material/card';
 
@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
-    TrainingSessionsCalendarComponent
+    StatsCalendarComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +16,7 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
   ],
   exports: [
-    TrainingSessionsCalendarComponent
+    StatsCalendarComponent
   ]
 })
-export class TrainingSessionsCalendarModule { }
+export class StatsCalendarModule { }

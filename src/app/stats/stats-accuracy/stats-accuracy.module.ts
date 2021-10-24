@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PackAccuracyChartComponent } from './pack-accuracy-chart.component';
+import { StatsAccuracyComponent } from './stats-accuracy.component';
 import { ScatterChartModule } from 'src/app/ui/charts/scatter-chart/scatter-chart.module';
 
 
 
 @NgModule({
   declarations: [
-    PackAccuracyChartComponent
+    StatsAccuracyComponent
   ],
   imports: [
     CommonModule,
     ScatterChartModule,
   ],
   exports: [
-    PackAccuracyChartComponent
+    StatsAccuracyComponent
   ]
 })
-export class PackAccuracyChartModule { }
+export class StatsAccuracyModule { }

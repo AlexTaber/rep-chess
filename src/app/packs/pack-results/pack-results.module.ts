@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PackResultsComponent } from './pack-results.component';
-import { PackAccuracyChartModule } from '../pack-accuracy-chart/pack-accuracy-chart.module';
+import { StatsAccuracyModule } from '../../stats/stats-accuracy/stats-accuracy.module';
 import { GridModule } from 'src/app/ui/grid/grid.module';
-import { TrainingSessionsQuickStatsModule } from 'src/app/training-sessions/training-sessions-quick-stats/training-sessions-quick-stats.module';
-import { TrainingSessionsCalendarModule } from 'src/app/training-sessions/training-sessions-calendar/training-sessions-calendar.module';
+import { StatsAveragesModule } from 'src/app/stats/stats-averages/stats-averages.module';
+import { StatsCalendarModule } from 'src/app/stats/stats-calendar/stats-calendar.module';
 import { MatCardModule } from '@angular/material/card';
-import { TrainingSessionsSuccessesPerMinuteModule } from 'src/app/training-sessions/training-sessions-successes-per-minute/training-sessions-successes-per-minute.module';
+import { StatusSuccessesPerMinuteModule } from 'src/app/stats/stats-successes-per-minute/stats-successes-per-minute.module';
 
 
 @NgModule({
@@ -17,10 +17,10 @@ import { TrainingSessionsSuccessesPerMinuteModule } from 'src/app/training-sessi
     CommonModule,
     MatCardModule,
     GridModule,
-    PackAccuracyChartModule,
-    TrainingSessionsQuickStatsModule,
-    TrainingSessionsCalendarModule,
-    TrainingSessionsSuccessesPerMinuteModule,
+    StatsAccuracyModule,
+    StatsAveragesModule,
+    StatsCalendarModule,
+    StatusSuccessesPerMinuteModule,
   ],
   exports: [
     PackResultsComponent

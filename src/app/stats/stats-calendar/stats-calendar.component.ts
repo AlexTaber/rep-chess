@@ -4,11 +4,11 @@ import { format } from 'date-fns';
 import { ExerciseCollection } from 'src/app/exercises/state';
 
 @Component({
-  selector: 'app-training-sessions-calendar',
-  templateUrl: './training-sessions-calendar.component.html',
-  styleUrls: ['./training-sessions-calendar.component.scss']
+  selector: 'app-stats-calendar',
+  templateUrl: './stats-calendar.component.html',
+  styleUrls: ['./stats-calendar.component.scss']
 })
-export class TrainingSessionsCalendarComponent implements OnInit {
+export class StatsCalendarComponent implements OnInit {
   @Input() set sessions(sessions: ExerciseCollection[]) {
     this.setOptionsFromSessions(sessions);
   }

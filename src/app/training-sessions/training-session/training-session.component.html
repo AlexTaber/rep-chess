@@ -1,6 +1,6 @@
 <app-container *ngIf="session$ | async as session">
-  <app-grid>
-    <app-grid-item>
+  <app-grid [columns]="4">
+    <app-grid-item [colSpan]="3">
       <app-train-exercises
         [exercises]="(pack$ | async)?.exercises || []"
         [config]="session.config"
@@ -10,7 +10,7 @@
     </app-grid-item>
 
     <app-grid-item>
-      <app-training-session-results></app-training-session-results>
+      <app-training-session-results [columns]="1"></app-training-session-results>
     </app-grid-item>
   </app-grid>
 </app-container>

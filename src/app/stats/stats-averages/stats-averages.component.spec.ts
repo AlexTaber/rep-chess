@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PackAccuracyChartComponent } from './pack-accuracy-chart.component';
+import { StatsAveragesComponent } from './stats-averages.component';
 
-describe('PackAccuracyChartComponent', () => {
-  let component: PackAccuracyChartComponent;
-  let fixture: ComponentFixture<PackAccuracyChartComponent>;
+describe('StatsAveragesComponent', () => {
+  let component: StatsAveragesComponent;
+  let fixture: ComponentFixture<StatsAveragesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PackAccuracyChartComponent ]
+      declarations: [ StatsAveragesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PackAccuracyChartComponent);
+    fixture = TestBed.createComponent(StatsAveragesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

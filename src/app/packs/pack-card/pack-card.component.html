@@ -34,7 +34,14 @@
   <mat-card-actions>
     <app-toggle-pack-subscription [pack]="pack"></app-toggle-pack-subscription>
 
-    <button mat-button [routerLink]="['/packs', pack.id, 'stats']">Stats</button>
+    <ng-container *ngIf="completeCycles$ | async as completeCycles">
+      <button
+        *ngIf="completeCycles.length > 0"
+        mat-button [routerLink]="['/packs', pack.id, 'stats']"
+      >
+        Stats
+      </button>
+    </ng-container>
 
     <span class="spacer"></span>
 

@@ -1,5 +1,25 @@
-<ng-container *ngIf="session$ | async as session">
-  <p>time: {{ session.results?.time }}</p>
+<app-grid *ngIf="session$ | async as session" [columns]="columns">
+  <app-grid-item>
+    <mat-card>
+      <mat-card-content>
+        <h2>Time: {{ session.results?.time | formatTime }}</h2>
+      </mat-card-content>
+    </mat-card>
+  </app-grid-item>
 
-  <p>{{ session.results?.successes }} - {{ session.results?.failures }}</p>
-</ng-container>
+  <app-grid-item>
+    <mat-card>
+      <mat-card-content>
+        <h2>Solves: {{ session.results?.successes }}</h2>
+      </mat-card-content>
+    </mat-card>
+  </app-grid-item>
+
+    <app-grid-item>
+    <mat-card>
+      <mat-card-content>
+        <h2>Misses: {{ session.results?.failures }}</h2>
+      </mat-card-content>
+    </mat-card>
+  </app-grid-item>
+</app-grid>

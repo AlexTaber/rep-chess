@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TrainingSessionsSuccessesPerMinuteComponent } from './training-sessions-successes-per-minute.component';
+import { StatusSuccessesPerMinuteComponent } from './stats-successes-per-minute.component';
 import { ScatterChartModule } from 'src/app/ui/charts/scatter-chart/scatter-chart.module';
 
 
 
 @NgModule({
   declarations: [
-    TrainingSessionsSuccessesPerMinuteComponent
+    StatusSuccessesPerMinuteComponent
   ],
   imports: [
     CommonModule,
     ScatterChartModule,
   ],
   exports: [
-    TrainingSessionsSuccessesPerMinuteComponent
+    StatusSuccessesPerMinuteComponent
   ]
 })
-export class TrainingSessionsSuccessesPerMinuteModule { }
+export class StatusSuccessesPerMinuteModule { }

@@ -3,11 +3,11 @@ import { ExerciseCollection } from 'src/app/exercises/state';
 import { ScatterChartOptions } from 'src/app/ui/charts/charts.interfaces';
 
 @Component({
-  selector: 'app-pack-accuracy-chart',
-  templateUrl: './pack-accuracy-chart.component.html',
-  styleUrls: ['./pack-accuracy-chart.component.scss']
+  selector: 'app-stats-accuracy',
+  templateUrl: './stats-accuracy.component.html',
+  styleUrls: ['./stats-accuracy.component.scss']
 })
-export class PackAccuracyChartComponent implements OnInit {
+export class StatsAccuracyComponent implements OnInit {
   @Input() set sessions(sessions: ExerciseCollection[]) {
     this.setOptionsFromSessions(sessions);
   }
