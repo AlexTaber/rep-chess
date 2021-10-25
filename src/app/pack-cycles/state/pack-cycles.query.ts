@@ -9,6 +9,7 @@ import { PackCyclesStore, PackCyclesState } from './pack-cycles.store';
 @Injectable({ providedIn: 'root' })
 export class PackCyclesQuery extends QueryEntity<PackCyclesState> {
   public all$ = this.selectAll();
+  public active$ = this.selectActive() as Observable<PackCycle | undefined>;
 
   public activeCompleteCycles$ = this.selectAll({
     filterBy: cycle => cycle.packId === this.packsQuery.getActiveId() && cycle.results.complete

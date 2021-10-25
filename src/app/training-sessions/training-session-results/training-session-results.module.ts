@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrainingSessionResultsComponent } from './training-session-results.component';
-import { GridModule } from 'src/app/ui/grid/grid.module';
-import { MatCardModule } from '@angular/material/card';
-import { FormatTimeModule } from 'src/app/shared/format-time/format-time.module';
+import { StatsResultsModule } from '../../stats/stats-results/stats-results.module';
 
 
 
@@ -13,9 +11,7 @@ import { FormatTimeModule } from 'src/app/shared/format-time/format-time.module'
   ],
   imports: [
     CommonModule,
-    GridModule,
-    MatCardModule,
-    FormatTimeModule,
+    StatsResultsModule,
   ],
   exports: [
     TrainingSessionResultsComponent

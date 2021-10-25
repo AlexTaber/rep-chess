@@ -5,7 +5,8 @@ export const convertNgxMoveToMove = (event: MoveChangeEvent): string => {
 }
 
 const isPromotion = (event: MoveChangeEvent): boolean => {
-  return event.pgn.pgn.includes("=");
+  const lastTwoChar = event.pgn.pgn.slice(-2);
+  return lastTwoChar[0] === "=";
 }
 
 const convertPromotionMove = (event: MoveChangeEvent): string => {

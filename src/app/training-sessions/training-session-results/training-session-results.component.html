@@ -1,25 +1,15 @@
-<app-grid *ngIf="session$ | async as session" [columns]="columns">
-  <app-grid-item>
-    <mat-card>
-      <mat-card-content>
-        <h2>Time: {{ session.results?.time | formatTime }}</h2>
-      </mat-card-content>
-    </mat-card>
-  </app-grid-item>
+<h2>Session Results</h2>
 
-  <app-grid-item>
-    <mat-card>
-      <mat-card-content>
-        <h2>Solves: {{ session.results?.successes }}</h2>
-      </mat-card-content>
-    </mat-card>
-  </app-grid-item>
+<app-stats-results
+  *ngIf="session$ | async as session"
+  [session]="session"
+  [columns]="columns">
+</app-stats-results>
 
-    <app-grid-item>
-    <mat-card>
-      <mat-card-content>
-        <h2>Misses: {{ session.results?.failures }}</h2>
-      </mat-card-content>
-    </mat-card>
-  </app-grid-item>
-</app-grid>
+<h2>Current Cycle</h2>
+
+<app-stats-results
+  *ngIf="cycle$ | async as cycle"
+  [session]="cycle"
+  [columns]="columns">
+</app-stats-results>
