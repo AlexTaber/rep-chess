@@ -16,6 +16,9 @@ import { TrainingSessionFormPayload } from '../training-session-form/state/train
 export class TrainingSessionComponent implements OnInit, AfterViewInit {
   public session$ = this.sessionsQuery.active$;
   public pack$ = this.packsQuery.activePack$;
+  public cycle$ = this.cyclesQuery.active$;
+
+  public showPackCycleComplete = false;
 
   private get payload(): TrainingSessionFormPayload {
     return this.sessionFormQuery.getValue().payload;
@@ -50,6 +53,11 @@ export class TrainingSessionComponent implements OnInit, AfterViewInit {
   public onSessionComplete(attempt: ExerciseAttempt): void {
     this.onExerciseComplete(attempt);
     this.navigateToResults();
+  }
+
+  public onStartNewCycle(): void {
+    this.showPackCycleComplete = false;
+    this.startNewCycle();
   }
 
   private createSession(): void {
@@ -112,9 +120,13 @@ export class TrainingSessionComponent implements OnInit, AfterViewInit {
     const exercises = this.packsQuery.getActivePack()?.exercises || [];
     const attempts = this.cyclesQuery.getActiveCycle()?.attempts || [];
     if (attempts.length >= exercises.length) {
-      this.packsService.shuffle();
-      this.createCycle();
+      this.showPackCycleComplete = true;
     }
+  }
+
+  private startNewCycle(): void {
+    this.packsService.shuffle();
+    this.createCycle();
   }
 
   private navigateToResults(): void {

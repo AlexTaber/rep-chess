@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ExerciseComponent } from './exercise.component';
 import { NgxChessBoardModule } from 'ngx-chess-board';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -13,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatIconModule,
     NgxChessBoardModule,
   ],
   exports: [

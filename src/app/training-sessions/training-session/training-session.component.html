@@ -14,3 +14,10 @@
     </app-grid-item>
   </app-grid>
 </app-container>
+
+<app-modal *ngIf="showPackCycleComplete" (close)="onStartNewCycle()">
+  <app-pack-cycle-complete
+    *ngIf="cycle$ | async as cycle"
+    [cycle]="cycle"
+  ></app-pack-cycle-complete>
+</app-modal>

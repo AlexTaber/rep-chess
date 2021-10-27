@@ -3,6 +3,7 @@ import { guid } from '@datorama/akita';
 import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { Subscription } from 'rxjs';
 import { convertNgxMoveToMove } from 'src/app/shared/utils/convert-ngx-move-to-move';
+import { dateDifference } from '../../shared/utils/date-difference';
 import { Exercise, ExerciseAttempt, ExerciseAttemptStatus, ExercisesQuery } from '../state';
 import { pieceIcons } from './piece-icons';
 import { ExerciseQuery, ExerciseService } from './state';
@@ -18,7 +19,9 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   @Output() complete = new EventEmitter<ExerciseAttempt>();
 
   public exercise$ = this.exercisesQuery.activeExercise$;
+  public pauseTime$ = this.exerciseQuery.pauseTime$;
   public pieceIcons = pieceIcons;
+  public size = 500;
 
   private exerciseSub: Subscription | undefined;
   private board?: NgxChessBoardComponent;
@@ -58,20 +61,28 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     this.exerciseService.setShowingSolution(true);
     const moves = this.exercise?.data.moves || [];
     const moveIndex = this.exerciseQuery.getValue().moveIndex;
-    const remainingTurns = moves.length - this.exerciseQuery.getValue().moveIndex;
+    const remainingTurns = Math.min(moves.length - this.exerciseQuery.getValue().moveIndex, 2);
     [...Array(remainingTurns)].map((_, index) =>  this.scheduleMove(moves[moveIndex + index], index + 1));
   }
 
   public getAttempt(status: ExerciseAttemptStatus): ExerciseAttempt {
-    const startTime = this.exerciseQuery.getValue().attemptStartTime;
-    const endTime = new Date();
-    const time = (endTime.getTime() - startTime.getTime()) / 1000;
+    const time =
+      dateDifference(this.exerciseQuery.getValue().attemptStartTime, new Date()) -
+      this.exerciseQuery.getValue().totalPauseTime;
     return {
       id: guid(),
       exerciseId: this.exercise!.id,
       status,
       time,
     }
+  }
+
+  public onPause(): void {
+    this.exerciseService.pause();
+  }
+
+  public onUnpause(): void {
+    this.exerciseService.unpause();
   }
 
   private onSetBoard(board: NgxChessBoardComponent | undefined): void {

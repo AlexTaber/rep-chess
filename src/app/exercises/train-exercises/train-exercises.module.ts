@@ -4,6 +4,7 @@ import { TrainExercisesComponent } from './train-exercises.component';
 import { ExerciseModule } from '../exercise/exercise.module';
 import { ExercisesClockModule } from '../exercises-clock/exercises-clock.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -14,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatIconModule,
     ExerciseModule,
     ExercisesClockModule,
   ],

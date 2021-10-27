@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 import { MoveChange } from 'ngx-chess-board';
+import { TimeInSeconds } from '../../../training-sessions/state';
 import { ExerciseAttemptStatus } from '../../state';
 
 export interface ExerciseState {
@@ -8,6 +9,8 @@ export interface ExerciseState {
   showingSolution: boolean;
   status: ExerciseAttemptStatus;
   attemptStartTime: Date;
+  totalPauseTime: TimeInSeconds;
+  pauseTime?: Date;
 }
 
 export interface MoveChangeEvent extends MoveChange {
@@ -20,6 +23,8 @@ export function createInitialState(): ExerciseState {
     showingSolution: false,
     status: "pending",
     attemptStartTime: new Date(),
+    totalPauseTime: 0,
+    pauseTime: undefined,
   };
 }
 

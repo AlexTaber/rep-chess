@@ -67,3 +67,19 @@ mat-form-field {
 .mat-card-actions {
   display: flex !important;
 }
+
+.button-wrapper {
+  display: flex;
+  margin-top: 6px;
+  margin-bottom: 6px;
+
+  .mat-button-base {
+    margin-right: 5px;
+  }
+}
+
+.hidden {
+  #board {
+    visibility: hidden;
+  }
+}

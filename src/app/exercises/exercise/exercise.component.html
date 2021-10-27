@@ -1,7 +1,36 @@
-<ngx-chess-board
-  #ngxBoard
-  [pieceIcons]="pieceIcons"
-  (moveChange)="onMove($any($event))"
-></ngx-chess-board>
+<div class="exercise">
+  <div
+    *ngIf="pauseTime$ | async"
+    class="pause-container"
+    [ngStyle]="{
+      width: size + 'px',
+      height: size + 'px'
+    }"
+  ></div>
+  
+  <ngx-chess-board
+    #ngxBoard
+    [ngClass]="{ hidden: pauseTime$ | async }"
+    [size]="size"
+    [pieceIcons]="pieceIcons"
+    (moveChange)="onMove($any($event))"
+  ></ngx-chess-board>
+</div>
 
-<button mat-raised-button (click)="onShowSolution()">Show Solution</button>
+<div class="button-wrapper">
+  <button *ngIf="pauseTime$ | async" mat-mini-fab color="primary" (click)="onUnpause()">
+    <mat-icon>play</mat-icon>
+  </button>
+  
+  <ng-container *ngIf="!(pauseTime$ | async)">
+    <button mat-mini-fab color="primary" (click)="onPause()">
+      <mat-icon>pause</mat-icon>
+    </button>
+
+    <ng-content select="[slot=actions]"></ng-content>
+
+    <button mat-mini-fab color="primary" (click)="onShowSolution()">
+      <mat-icon>fast_forward</mat-icon>
+    </button>
+  </ng-container>
+</div>
