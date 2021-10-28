@@ -3,6 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NavBarQuery, NavBarService } from './nav-bar/state';
 import { PacksQuery, PacksService } from './packs/state';
 import { filter } from "rxjs/operators";
+import { MockedExercisesRepo } from './shared/mock-repos/mocked-exercises.repository';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,13 @@ export class AppComponent implements OnInit {
     private packsService: PacksService,
     private packsQuery: PacksQuery,
     private router: Router,
+    private test: MockedExercisesRepo
   ) {}
 
   ngOnInit(): void {
     this.fetchPacks();
     this.subscribeToRouterEvents();
+    this.test.fetch();
   }
 
   private fetchPacks(): void {

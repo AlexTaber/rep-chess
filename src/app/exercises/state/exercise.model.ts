@@ -1,7 +1,6 @@
 import { ID } from "@datorama/akita";
 import { convertCsvStringToExercises } from "src/app/shared/utils/convert-csv-string-to-exercises";
 import { TimeInSeconds } from "src/app/training-sessions/state";
-import { MOCK_CSVS } from "./mock-exercise-csvs";
 
 export interface Exercise<T = ExerciseData> {
   id: string;
@@ -298,5 +297,3 @@ export const exerciseThemes = [
 ] as const;
 
 export type ExerciseTheme = typeof exerciseThemes[number]["key"];
-
-export const MOCK_EXERCISES: LichessExercise[] = convertCsvStringToExercises(MOCK_CSVS[0]);

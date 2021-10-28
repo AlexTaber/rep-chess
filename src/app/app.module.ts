@@ -10,12 +10,14 @@ import { PacksDashboardModule } from './packs/packs-dashboard/packs-dashboard.mo
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
 import { DrawerNavModule } from './layout/drawer-nav/drawer-nav.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

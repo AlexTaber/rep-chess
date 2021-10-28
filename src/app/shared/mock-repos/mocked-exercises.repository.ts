@@ -1,18 +1,32 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { shuffle } from "lodash";
-import { ExerciseFilter, ExerciseRatingRange, ExerciseTheme, LichessExercise, MOCK_EXERCISES } from "src/app/exercises/state";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { ExerciseFilter, ExerciseRatingRange, ExerciseTheme, LichessExercise } from "src/app/exercises/state";
+import { convertCsvStringToExercises } from "../utils/convert-csv-string-to-exercises";
 
 @Injectable({
   providedIn: "root",
 })
 export class MockedExercisesRepo {
-  private exercises = MOCK_EXERCISES;
+  constructor(
+    private http: HttpClient,
+  ) {}
 
-  public getMany(filter: ExerciseFilter): LichessExercise[] {
-    let exercises = shuffle(this.exercises);
-    exercises = this.checkApplyThemesFilter(exercises, filter);
-    exercises = this.checkApplyRatingFilter(exercises, filter);
-    return this.checkApplyLimit(exercises, filter.limit || 1000);
+  public getMany(filter: ExerciseFilter): Observable<LichessExercise[]> {
+    return this.fetch().pipe(
+      map(exercises => {
+        exercises = this.checkApplyThemesFilter(exercises, filter);
+        exercises = this.checkApplyRatingFilter(exercises, filter);
+        return this.checkApplyLimit(exercises, filter.limit || 1000);
+      }),
+    );
+  }
+
+  public fetch(): Observable<LichessExercise[]> {
+    return this.http.get("https://general-assets-324.s3.amazonaws.com/mock-exercises.csv",  {responseType: 'text'})
+      .pipe(map(r => shuffle(convertCsvStringToExercises(r))));
   }
 
   private checkApplyLimit(exercises: LichessExercise[], limit: number | undefined): LichessExercise[] {
