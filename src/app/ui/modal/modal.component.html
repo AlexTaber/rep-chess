@@ -1,8 +1,8 @@
 <div class="modal-window">
   <div>
-    <a class="modal-close" (click)="onClose()">Close</a>
+    <a *ngIf="!hideClose" class="modal-close" (click)="onClose()">Close</a>
     
-    <div>
+    <div class="modal-content" [ngClass]="{ hideClose }">
       <ng-content></ng-content>
     </div>
   </div>

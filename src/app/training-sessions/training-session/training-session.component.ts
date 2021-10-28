@@ -47,11 +47,12 @@ export class TrainingSessionComponent implements OnInit, AfterViewInit {
   public onExerciseComplete(attempt: ExerciseAttempt): void {
     this.addAttempt(attempt);
     this.setResults();
-    this.checkStartNewCycle();
   }
 
-  public onSessionComplete(attempt: ExerciseAttempt): void {
-    this.onExerciseComplete(attempt);
+  public onSessionComplete(attempt?: ExerciseAttempt): void {
+    if (attempt) {
+      this.onExerciseComplete(attempt);
+    }
     this.navigateToResults();
   }
 
@@ -116,16 +117,8 @@ export class TrainingSessionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private checkStartNewCycle(): void {
-    const exercises = this.packsQuery.getActivePack()?.exercises || [];
-    const attempts = this.cyclesQuery.getActiveCycle()?.attempts || [];
-    if (attempts.length >= exercises.length) {
-      this.showPackCycleComplete = true;
-    }
-  }
-
   private startNewCycle(): void {
-    this.packsService.shuffle();
+    this.packsService.resetExercises();
     this.createCycle();
   }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
 import { Observable } from 'rxjs';
 import { Exercise, ExerciseData } from '.';
+import { arrayLast } from '../../shared/utils/array-utils';
 import { ExercisesStore, ExercisesState } from './exercises.store';
 
 @Injectable({ providedIn: 'root' })
@@ -26,5 +27,9 @@ export class ExercisesQuery extends QueryEntity<ExercisesState> {
 
   public getActiveExercise(): Exercise | undefined {
     return this.getActive() as Exercise | undefined;
+  }
+
+  public lastIsActive(): boolean {
+    return arrayLast(this.getAll(), this.getActive());
   }
 }

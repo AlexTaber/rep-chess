@@ -1,11 +1,11 @@
 <app-exercises-clock
   *ngIf="config"
   [config]="{ leftTime: config.targetTime }"
-  (complete)="onComplete()"
+  (complete)="onFinish()"
 ></app-exercises-clock>
 
 <app-exercise #exerciseComponent (complete)="onCompleteExercise($event)">
-  <button slot="actions" mat-mini-fab color="primary" (click)="onComplete()">
+  <button slot="actions" mat-mini-fab color="primary" (click)="onFinish()">
     <mat-icon>stop</mat-icon>
   </button>
 </app-exercise>

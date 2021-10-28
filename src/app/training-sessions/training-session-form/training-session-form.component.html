@@ -1,22 +1,37 @@
 <form *ngIf="(payload$ | async) as payload" (submit)="onSubmit(payload)">
-  <mat-radio-group [value]="payload.unlimitedMode" aria-label="Select an option" (change)="onUnlimitedModeChange($event)">
-    <mat-radio-button [value]="true">Unlimited Mode</mat-radio-button>
-    <mat-radio-button [value]="false">Timed</mat-radio-button>
-  </mat-radio-group>
+  <div class="radio-container">
+    <mat-radio-group [value]="payload.unlimitedMode" aria-label="Select an option" (change)="onUnlimitedModeChange($event)">
+      <mat-radio-button [value]="true">Unlimited Mode</mat-radio-button>
 
-  <ng-container *ngIf="!payload.unlimitedMode">
-    <mat-form-field>
-      <mat-label>Minutes</mat-label>
+      <mat-radio-button class="margin-left" [value]="false">Timed</mat-radio-button>
+    </mat-radio-group>
+  </div>
 
-      <input matInput type="number" [value]="payload.minutes" (change)="updateMinutes($event)">
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Minutes</mat-label>
 
-    <mat-form-field>
-      <mat-label>Seconds</mat-label>
+    <input
+      matInput
+      type="number"
+      [disabled]="payload.unlimitedMode"
+      [value]="payload.minutes"
+      (change)="updateMinutes($event)"
+    >
+  </mat-form-field>
 
-      <input matInput type="number" [value]="payload.seconds" (change)="updateSeconds($event)">
-    </mat-form-field>
-  </ng-container>
+  <mat-form-field>
+    <mat-label>Seconds</mat-label>
 
-  <button mat-flat-button color="primary" type="submit">Start Training Session</button>
+    <input
+      matInput
+      type="number"
+      [disabled]="payload.unlimitedMode"
+      [value]="payload.seconds"
+      (change)="updateSeconds($event)"
+    >
+  </mat-form-field>
+
+  <div class="button-wrapper">
+    <button mat-flat-button color="primary" type="submit">Start Training Session</button>
+  </div>
 </form>

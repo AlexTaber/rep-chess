@@ -1,3 +1,15 @@
 <div *ngIf="cycle">
-  pack cycle complete!
+  <h3>Cycle Complete!</h3>
+
+  <app-stats-results [session]="cycle"></app-stats-results>
+
+  <div class="button-wrapper">
+    <button mat-raised-button (click)="onComplete()">
+      End Training
+    </button>
+
+    <button mat-raised-button color="primary" (click)="onContinue()">
+      Continue
+    </button>
+  </div>
 </div>

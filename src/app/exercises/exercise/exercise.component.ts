@@ -146,6 +146,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   }
 
   private onPass(): void {
+    this.exerciseService.setStatus("pass");
     setTimeout(() => this.emit("pass"), this.pauseTime);
   }
 

@@ -55,4 +55,9 @@ export class PacksService {
     const exercises = this.packsQuery.getActivePack()?.exercises || [];
     this.packsStore.updateActive({ exercises: shuffle(exercises) });
   }
+
+  public resetExercises(): void {
+    const exercises = [ ...this.packsQuery.getActivePack()?.exercises || [] ];
+    this.packsStore.updateActive({ exercises });
+  }
 }

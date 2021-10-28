@@ -5,7 +5,8 @@
         [exercises]="(pack$ | async)?.exercises || []"
         [config]="session.config"
         (exerciseComplete)="onExerciseComplete($event)"
-        (complete)="onSessionComplete($event)"
+        (finish)="onSessionComplete($event)"
+        (complete)="showPackCycleComplete = true"
       ></app-train-exercises>
     </app-grid-item>
 
@@ -15,9 +16,11 @@
   </app-grid>
 </app-container>
 
-<app-modal *ngIf="showPackCycleComplete" (close)="onStartNewCycle()">
+<app-modal *ngIf="showPackCycleComplete" [hideClose]="true" (close)="onStartNewCycle()">
   <app-pack-cycle-complete
     *ngIf="cycle$ | async as cycle"
     [cycle]="cycle"
+    (complete)="onSessionComplete()"
+    (continue)="onStartNewCycle()"
   ></app-pack-cycle-complete>
 </app-modal>
