@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { guid, ID } from '@datorama/akita';
 import { shuffle } from 'lodash';
-import { zip } from 'rxjs';
 import { MockedExercisesRepo } from 'src/app/shared/mock-repos/mocked-exercises.repository';
 import { packSubscriptionsRepo } from 'src/app/shared/mock-repos/mocked-pack-subscriptions.repository';
 import { PacksQuery } from '.';
@@ -27,7 +26,8 @@ export class PacksService {
   }
 
   public create(payload: PacksFormPayload): void {
-    this.repo.getMany(payload.filter).subscribe(exercises => {
+    this.repo.fetch().subscribe(exercises => {
+      exercises = this.repo.getMany(exercises, payload.filter);
       const pack = {
         id: guid(),
         name: payload.name,
@@ -61,30 +61,19 @@ export class PacksService {
   }
 
   private setInitial(): void {
-    zip(
-      this.repo.getMany({
-        themes: ["fork"],
-        ratingRange: {
-          low: 800,
-          high: 1000,
-        },
-        limit: 100,
-      }),
-
-      this.repo.getMany({
-        themes: ["pin"],
-        ratingRange: {
-          low: 1500,
-          high: 2100,
-        },
-        limit: 100,
-      }),
-    ).subscribe(packExercises => {
+    this.repo.fetch().subscribe(exercises => {
       const packs = [
         {
           id: guid(),
           name: "Easy Forks",
-          exercises: packExercises[0],
+          exercises: this.repo.getMany(exercises, {
+            themes: ["fork"],
+            ratingRange: {
+              low: 800,
+              high: 1000,
+            },
+            limit: 100,
+          }),
           subscribed: false,
           data: {
             themes: ["fork"],
@@ -98,7 +87,14 @@ export class PacksService {
         {
           id: guid(),
           name: "Pins Galore!",
-          exercises: packExercises[1],
+          exercises: this.repo.getMany(exercises, {
+            themes: ["pin"],
+            ratingRange: {
+              low: 1500,
+              high: 2100,
+            },
+            limit: 100,
+          }),
           subscribed: false,
           data: {
             themes: ["pin"],

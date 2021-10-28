@@ -14,14 +14,10 @@ export class MockedExercisesRepo {
     private http: HttpClient,
   ) {}
 
-  public getMany(filter: ExerciseFilter): Observable<LichessExercise[]> {
-    return this.fetch().pipe(
-      map(exercises => {
-        exercises = this.checkApplyThemesFilter(exercises, filter);
-        exercises = this.checkApplyRatingFilter(exercises, filter);
-        return this.checkApplyLimit(exercises, filter.limit || 1000);
-      }),
-    );
+  public getMany(exercises: LichessExercise[], filter: ExerciseFilter): LichessExercise[] {
+    exercises = this.checkApplyThemesFilter(exercises, filter);
+    exercises = this.checkApplyRatingFilter(exercises, filter);
+    return this.checkApplyLimit(exercises, filter.limit || 1000);
   }
 
   public fetch(): Observable<LichessExercise[]> {
