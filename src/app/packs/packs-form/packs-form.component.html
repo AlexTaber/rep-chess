@@ -7,5 +7,9 @@
 
   <app-exercises-filter-input (filterChange)="updateFilter($event)"></app-exercises-filter-input>
 
-  <button mat-flat-button color="primary" type="submit">Create Pack</button>
+  <div class="button-wrapper">
+    <button mat-button routerLink="/">Cancel</button>
+
+    <button mat-flat-button color="primary" type="submit">Create Pack</button>
+  </div>
 </form>

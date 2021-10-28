@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ExercisesFilterInputModule } from 'src/app/exercises/exercises-filter-input/exercises-filter-input.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,6 +15,7 @@ import { ExercisesFilterInputModule } from 'src/app/exercises/exercises-filter-i
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
