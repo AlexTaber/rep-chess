@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GridComponent implements OnInit {
   @Input() columns = 4;
+  @Input() mobileColumns?: number;
 
   constructor() { }
 

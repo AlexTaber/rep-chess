@@ -4,6 +4,7 @@ import { NgxChessBoardComponent } from 'ngx-chess-board';
 import { Subscription } from 'rxjs';
 import { convertNgxMoveToMove } from 'src/app/shared/utils/convert-ngx-move-to-move';
 import { dateDifference } from '../../shared/utils/date-difference';
+import { Media } from '../../ui/media/media';
 import { Exercise, ExerciseAttempt, ExerciseAttemptStatus, ExercisesQuery } from '../state';
 import { pieceIcons } from './piece-icons';
 import { ExerciseQuery, ExerciseService } from './state';
@@ -21,7 +22,6 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   public exercise$ = this.exercisesQuery.activeExercise$;
   public pauseTime$ = this.exerciseQuery.pauseTime$;
   public pieceIcons = pieceIcons;
-  public size = 500;
 
   private exerciseSub: Subscription | undefined;
   private board?: NgxChessBoardComponent;
@@ -43,6 +43,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     private exercisesQuery: ExercisesQuery,
     private exerciseService: ExerciseService,
     private exerciseQuery: ExerciseQuery,
+    private media: Media,
   ) { }
 
   ngOnInit(): void {}
@@ -83,6 +84,13 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   public onUnpause(): void {
     this.exerciseService.unpause();
+  }
+
+  public getSize(): number {
+    return this.media.responsive({
+      mobile: 400,
+      desktop: 500,
+    });
   }
 
   private onSetBoard(board: NgxChessBoardComponent | undefined): void {

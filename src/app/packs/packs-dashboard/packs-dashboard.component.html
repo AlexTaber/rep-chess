@@ -3,7 +3,7 @@
     My Packs
   </h2>
 
-  <app-grid [columns]="3">
+  <app-grid [columns]="3" [mobileColumns]="1">
     <app-grid-item *ngFor="let pack of subscribedPacks$ | async">
       <app-pack-card [pack]="pack"></app-pack-card>
     </app-grid-item>
@@ -19,7 +19,7 @@
     Browse
   </h2>
 
-  <app-grid [columns]="3">
+  <app-grid [columns]="3" [mobileColumns]="1">
     <app-grid-item *ngFor="let pack of unsubscribedPacks$ | async">
       <app-pack-card [pack]="pack"></app-pack-card>
     </app-grid-item>

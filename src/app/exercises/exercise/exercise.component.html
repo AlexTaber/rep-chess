@@ -3,21 +3,21 @@
     *ngIf="pauseTime$ | async"
     class="pause-container"
     [ngStyle]="{
-      width: size + 'px',
-      height: size + 'px'
+      width: getSize() + 'px',
+      height: getSize() + 'px'
     }"
   ></div>
   
   <ngx-chess-board
     #ngxBoard
     [ngClass]="{ hidden: pauseTime$ | async }"
-    [size]="size"
+    [size]="getSize()"
     [pieceIcons]="pieceIcons"
     (moveChange)="onMove($any($event))"
   ></ngx-chess-board>
 </div>
 
-<div class="button-wrapper">
+<div class="button-wrapper" [ngStyle]="{ width: getSize() + 'px' }">
   <button *ngIf="pauseTime$ | async" mat-mini-fab color="primary" (click)="onUnpause()">
     <mat-icon>play</mat-icon>
   </button>

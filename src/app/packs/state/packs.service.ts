@@ -65,41 +65,138 @@ export class PacksService {
       const packs = [
         {
           id: guid(),
+          name: "My First Pack",
+          exercises: this.repo.getMany(exercises, {
+            ratingRange: {
+              low: 500,
+              high: 800,
+            },
+            limit: 20,
+          }),
+          subscribed: false,
+          data: {
+            ratingRange: {
+              low: 500,
+              high: 800,
+            },
+          }
+        },
+
+        {
+          id: guid(),
+          name: "Easy Mixed",
+          exercises: this.repo.getMany(exercises, {
+            ratingRange: {
+              low: 900,
+              high: 1200,
+            },
+            limit: 50,
+          }),
+          subscribed: false,
+          data: {
+            ratingRange: {
+              low: 900,
+              high: 1200,
+            },
+          }
+        },
+
+        {
+          id: guid(),
           name: "Easy Forks",
           exercises: this.repo.getMany(exercises, {
             themes: ["fork"],
             ratingRange: {
-              low: 800,
-              high: 1000,
+              low: 900,
+              high: 1200,
             },
-            limit: 100,
+            limit: 50,
           }),
           subscribed: false,
           data: {
             themes: ["fork"],
             ratingRange: {
-              low: 800,
-              high: 1000,
+              low: 900,
+              high: 1200,
+            },
+          }
+        },
+
+        {
+          id: guid(),
+          name: "Intermediate Mixed",
+          exercises: this.repo.getMany(exercises, {
+            ratingRange: {
+              low: 1400,
+              high: 1700,
+            },
+            limit: 100,
+          }),
+          subscribed: false,
+          data: {
+            ratingRange: {
+              low: 1400,
+              high: 1700,
+            },
+          }
+        },
+
+        {
+          id: guid(),
+          name: "Intermediate Checkmates",
+          exercises: this.repo.getMany(exercises, {
+            themes: ["mate"],
+            ratingRange: {
+              low: 1400,
+              high: 1700,
+            },
+            limit: 100,
+          }),
+          subscribed: false,
+          data: {
+            themes: ["mate"],
+            ratingRange: {
+              low: 1400,
+              high: 1700,
+            },
+          }
+        },
+
+        {
+          id: guid(),
+          name: "Advanced Mixed",
+          exercises: this.repo.getMany(exercises, {
+            ratingRange: {
+              low: 1800,
+              high: 2100,
+            },
+            limit: 200,
+          }),
+          subscribed: false,
+          data: {
+            ratingRange: {
+              low: 1800,
+              high: 2100,
             },
           }
         },
       
         {
           id: guid(),
-          name: "Pins Galore!",
+          name: "Advanced Pins",
           exercises: this.repo.getMany(exercises, {
             themes: ["pin"],
             ratingRange: {
-              low: 1500,
+              low: 1800,
               high: 2100,
             },
-            limit: 100,
+            limit: 200,
           }),
           subscribed: false,
           data: {
             themes: ["pin"],
             ratingRange: {
-              low: 1500,
+              low: 1800,
               high: 2100,
             }
           }

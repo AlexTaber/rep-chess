@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './grid.component';
 import { GridItemModule } from './grid-item/grid-item.module';
+import { MediaModule } from '../media/media.module';
 
 
 
@@ -11,6 +12,7 @@ import { GridItemModule } from './grid-item/grid-item.module';
   ],
   imports: [
     CommonModule,
+    MediaModule,
     GridItemModule,
   ],
   exports: [

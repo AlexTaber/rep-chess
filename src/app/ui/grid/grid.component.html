@@ -1,5 +1,5 @@
 <div class="grid" [ngStyle]="{
-  gridTemplateColumns: 'repeat(' + columns + ', 1fr)'
+  gridTemplateColumns: 'repeat(' + ({ mobile: mobileColumns || columns, desktop: columns } | responsive | async) + ', 1fr)'
 }">
   <ng-content></ng-content>
 </div>

@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Media } from '../../media/media';
 
 @Component({
   selector: 'app-grid-item',
@@ -11,14 +12,20 @@ export class GridItemComponent implements OnInit {
     return this.getColSpan();
   }
 
-
   @Input() colSpan = 1;
 
-  constructor() { }
+  @Input() mobileColSpan?: number;
+
+  constructor(
+    private media: Media,
+  ) { }
 
   ngOnInit(): void {}
 
   public getColSpan(): string {
-    return `span ${this.colSpan}`
+    return `span ${this.media.responsive({
+      mobile: this.mobileColSpan,
+      desktop: this.colSpan,
+    })}`
   }
 }

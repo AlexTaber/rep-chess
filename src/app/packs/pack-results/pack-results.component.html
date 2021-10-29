@@ -1,6 +1,6 @@
 <ng-container *ngIf="cycles$ | async as cycles">
-  <app-grid [columns]="2">
-    <app-grid-item [colSpan]="2">
+  <app-grid [columns]="2" [mobileColumns]="1">
+    <app-grid-item [colSpan]="2" [mobileColSpan]="1">
       <app-stats-averages [sessions]="cycles" name="Completed Cycles"></app-stats-averages>
     </app-grid-item>
 
@@ -16,7 +16,7 @@
       </mat-card>
     </app-grid-item>
 
-    <app-grid-item [colSpan]="2">
+    <app-grid-item [colSpan]="2" [mobileColSpan]="1">
       <app-stats-calendar [sessions]="(sessions$ | async) || []"></app-stats-calendar>
     </app-grid-item>
   </app-grid>

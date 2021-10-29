@@ -10,7 +10,17 @@
 
         <p *ngIf="pack.data.ratingRange as range"><small>{{ range.low }} - {{ range.high }} Rating</small></p>
 
-        <p *ngIf="pack.data.themes?.length"><small>{{ pack.data.themes?.join(", ") }}</small></p>
+        <p>
+          <small>
+            <ng-container *ngIf="pack.data.themes?.length">
+              {{ pack.data.themes?.join(", ") }}
+            </ng-container>
+
+            <ng-container *ngIf="!pack.data.themes?.length">
+              &nbsp;
+            </ng-container>
+          </small>
+        </p>
       </app-grid-item>
 
       <app-grid-item>
